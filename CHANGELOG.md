@@ -1,3 +1,8 @@
+## 1.1.0+2
+
+- Updated image assets to absolute GitHub URLs for better documentation rendering on pub.dev.
+- Professionalized README branding with improved logo/title alignment.
+
 ## 1.1.0
 
 - Added 20+ curated predefined palettes including Neon Forest, Ocean Signal, Midnight Mint, Royal Berry, and more.

@@ -1,4 +1,4 @@
-<img src="assets/logo.png" width="64" valign="middle"> <h1 style="display: inline; vertical-align: middle; margin-left: 10px;">Chroma Theme 🎨</h1>
+<img src="https://raw.githubusercontent.com/Satyam-Gawali/chroma_theme/main/assets/logo.png" width="64" valign="middle"> <h1 style="display: inline; vertical-align: middle; margin-left: 10px;">Chroma Theme 🎨</h1>
 
 
 
@@ -10,7 +10,7 @@
 A premium, dynamic, and adaptive Material 3 theme engine for Flutter. **Chroma Theme** simplifies complex theme management, providing system-aware modes, custom tonal palettes, and beautiful animated transitions with zero boilerplate.
 
 <p align="center">
-  <img src="assets/banner.png" alt="Chroma Theme Banner" width="85%">
+  <img src="https://raw.githubusercontent.com/Satyam-Gawali/chroma_theme/main/assets/banner.png" alt="Chroma Theme Banner" width="85%">
 </p>
 
 
@@ -49,7 +49,7 @@ Add `chroma_theme` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  chroma_theme: ^1.1.0
+  chroma_theme: ^1.1.0+2
 ```
 
 Then run:
@@ -217,7 +217,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 | Light | Dark | AMOLED | High Contrast |
 | :---: | :---: | :---: | :---: |
-| ![](screenshots/light.png) | ![](screenshots/dark.png) | ![](screenshots/amoled.png) | ![](screenshots/high_contrast.png) |
+| ![](https://raw.githubusercontent.com/Satyam-Gawali/chroma_theme/main/screenshots/light.png) | ![](https://raw.githubusercontent.com/Satyam-Gawali/chroma_theme/main/screenshots/dark.png) | ![](https://raw.githubusercontent.com/Satyam-Gawali/chroma_theme/main/screenshots/amoled.png) | ![](https://raw.githubusercontent.com/Satyam-Gawali/chroma_theme/main/screenshots/high_contrast.png) |
 
 ---
 
