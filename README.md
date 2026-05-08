@@ -194,19 +194,6 @@ class MyThemeStorage implements ThemePersistence {
 
 ---
 
-## 🏗️ Architecture
-
-```mermaid
-graph TD
-    A[Seed Colors] --> B[Tonal Palette Generation]
-    B --> C[Material 3 ColorScheme]
-    C --> D[Component Overrides]
-    D --> E[ThemeData]
-    E --> F[Flutter Widgets]
-```
-
----
-
 ## 📖 Documentation
 
 For detailed API breakdowns and advanced guides:
@@ -228,12 +215,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📱 Screenshots
 
-<p align="center">
-  <img src="screenshots/light.png" width="180" alt="Light" />
-  <img src="screenshots/dark.png" width="180" alt="Dark" />
-  <img src="screenshots/amoled.png" width="180" alt="AMOLED" />
-  <img src="screenshots/high_contrast.png" width="180" alt="High Contrast" />
-</p>
+| Light | Dark | AMOLED | High Contrast |
+| :---: | :---: | :---: | :---: |
+| ![](screenshots/light.png) | ![](screenshots/dark.png) | ![](screenshots/amoled.png) | ![](screenshots/high_contrast.png) |
 
 ---
 
