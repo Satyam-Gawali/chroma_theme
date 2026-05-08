@@ -104,7 +104,8 @@ class ChromaShowcaseScreen extends StatelessWidget {
               // 3. Status Bar
               const SizedBox(height: 12),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 decoration: BoxDecoration(
                   color: colors.primary.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
@@ -115,11 +116,17 @@ class ChromaShowcaseScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Mode: ${chroma.mode.name.toUpperCase()}',
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: colors.primary),
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: colors.primary),
                     ),
                     Text(
                       'Palette: ${chroma.palette.name.toUpperCase()}',
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: colors.primary),
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: colors.primary),
                     ),
                   ],
                 ),
@@ -151,7 +158,11 @@ class ChromaShowcaseScreen extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 title.toUpperCase(),
-                style: TextStyle(fontSize: 9, fontWeight: FontWeight.w900, letterSpacing: 1, color: colors.onSurfaceVariant),
+                style: TextStyle(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1,
+                    color: colors.onSurfaceVariant),
               ),
             ],
           ),
@@ -195,7 +206,8 @@ class ChromaShowcaseScreen extends StatelessWidget {
             child: Text(
               item.$1,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: item.$3),
+              style: TextStyle(
+                  fontSize: 8, fontWeight: FontWeight.bold, color: item.$3),
             ),
           ),
         );
@@ -214,11 +226,13 @@ class ChromaShowcaseScreen extends StatelessWidget {
     );
   }
 
-  Widget _tonalBar(BuildContext context, String label, ChromaTonalPalette palette) {
+  Widget _tonalBar(
+      BuildContext context, String label, ChromaTonalPalette palette) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 8, fontWeight: FontWeight.bold)),
+        Text(label,
+            style: const TextStyle(fontSize: 8, fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
         ClipRRect(
           borderRadius: BorderRadius.circular(4),
@@ -242,11 +256,13 @@ class ChromaShowcaseScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Headline Large', style: textTheme.headlineLarge?.copyWith(fontSize: 18)),
+        Text('Headline Large',
+            style: textTheme.headlineLarge?.copyWith(fontSize: 18)),
         const SizedBox(height: 4),
         Text('Body Medium Text Sample', style: textTheme.bodyMedium),
         const SizedBox(height: 4),
-        Text('Label Small Metadata', style: textTheme.labelSmall?.copyWith(color: colors.primary)),
+        Text('Label Small Metadata',
+            style: textTheme.labelSmall?.copyWith(color: colors.primary)),
       ],
     );
   }
@@ -256,9 +272,17 @@ class ChromaShowcaseScreen extends StatelessWidget {
       children: [
         Row(
           children: [
-            Expanded(child: FilledButton(onPressed: () {}, child: const Text('Action', style: TextStyle(fontSize: 10)))),
+            Expanded(
+                child: FilledButton(
+                    onPressed: () {},
+                    child:
+                        const Text('Action', style: TextStyle(fontSize: 10)))),
             const SizedBox(width: 6),
-            Expanded(child: OutlinedButton(onPressed: () {}, child: const Text('Cancel', style: TextStyle(fontSize: 10)))),
+            Expanded(
+                child: OutlinedButton(
+                    onPressed: () {},
+                    child:
+                        const Text('Cancel', style: TextStyle(fontSize: 10)))),
           ],
         ),
         const SizedBox(height: 8),
@@ -298,7 +322,9 @@ class ChromaShowcaseScreen extends StatelessWidget {
               color: active ? colors.primary : colors.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(m.$1, size: 16, color: active ? colors.onPrimary : colors.onSurfaceVariant),
+            child: Icon(m.$1,
+                size: 16,
+                color: active ? colors.onPrimary : colors.onSurfaceVariant),
           ),
         );
       }).toList(),
@@ -326,13 +352,18 @@ class ChromaShowcaseScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              color: active ? colors.primaryContainer : colors.surfaceContainerHighest.withOpacity(0.5),
+              color: active
+                  ? colors.primaryContainer
+                  : colors.surfaceContainerHighest.withOpacity(0.5),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: active ? colors.primary : Colors.transparent),
+              border: Border.all(
+                  color: active ? colors.primary : Colors.transparent),
             ),
             child: Text(
               p.name,
-              style: TextStyle(fontSize: 9, fontWeight: active ? FontWeight.bold : FontWeight.normal),
+              style: TextStyle(
+                  fontSize: 9,
+                  fontWeight: active ? FontWeight.bold : FontWeight.normal),
             ),
           ),
         );

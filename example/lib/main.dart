@@ -79,7 +79,9 @@ class _ScaffoldWithNavState extends State<ScaffoldWithNav> {
             ),
             onPressed: () {
               context.chroma.setTheme(
-                context.chroma.isDark ? ChromaThemeMode.light : ChromaThemeMode.dark,
+                context.chroma.isDark
+                    ? ChromaThemeMode.light
+                    : ChromaThemeMode.dark,
               );
             },
           ),

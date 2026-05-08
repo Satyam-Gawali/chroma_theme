@@ -1,4 +1,7 @@
-# Chroma Theme 🎨
+<img src="assets/logo.png" width="64" valign="middle"> <span style="font-size: 32px; font-weight: 800; vertical-align: middle; margin-left: 10px;">Chroma Theme 🎨</span>
+
+
+
 
 [![Pub Version](https://img.shields.io/pub/v/chroma_theme?logo=dart&color=teal)](https://pub.dev/packages/chroma_theme)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -9,9 +12,6 @@ A premium, dynamic, and adaptive Material 3 theme engine for Flutter. **Chroma T
 <p align="center">
   <img src="assets/banner.png" alt="Chroma Theme Banner" width="85%">
 </p>
-
-
-
 
 
 
