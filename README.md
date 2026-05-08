@@ -49,7 +49,7 @@ Add `chroma_theme` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  chroma_theme: ^1.1.0+2
+  chroma_theme: ^1.1.0
 ```
 
 Then run:
@@ -197,9 +197,10 @@ class MyThemeStorage implements ThemePersistence {
 ## 📖 Documentation
 
 For detailed API breakdowns and advanced guides:
-- 📑 [API Reference](API.md)
-- 💡 [Usage Guide](USAGE_GUIDE.md)
-- 🚀 [Example App](example/)
+
+- 📑 [API Reference](https://github.com/Satyam-Gawali/chroma_theme/blob/main/API.md)
+- 💡 [Usage Guide](https://github.com/Satyam-Gawali/chroma_theme/blob/main/USAGE_GUIDE.md)
+- 🚀 [View Full Example on GitHub](https://github.com/Satyam-Gawali/chroma_theme/tree/main/example)
 
 ---
 
@@ -209,7 +210,7 @@ Contributions are welcome! Please feel free to submit a Pull Request or open an 
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Satyam-Gawali/chroma_theme/blob/main/LICENSE) file for details.
 
 ---
 

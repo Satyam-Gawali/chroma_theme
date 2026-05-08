@@ -1,3 +1,8 @@
+## 1.1.0+3
+
+- Fixed README documentation links for better pub.dev compatibility.
+- Streamlined installation example in README.
+
 ## 1.1.0+2
 
 - Updated image assets to absolute GitHub URLs for better documentation rendering on pub.dev.

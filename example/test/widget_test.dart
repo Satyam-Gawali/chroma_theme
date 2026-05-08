@@ -6,8 +6,9 @@ import 'package:chroma_theme_example/main.dart';
 void main() {
   testWidgets('ChromaTheme smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const ChromaTheme(child: ScaffoldWithNav()),
+      const ChromaTheme(child: ChromaExampleApp()),
     );
-    expect(find.byType(ScaffoldWithNav), findsOneWidget);
+    expect(find.byType(ChromaExampleApp), findsOneWidget);
   });
 }
+
