@@ -15,9 +15,6 @@ A premium, dynamic, and adaptive Material 3 theme engine for Flutter. **Chroma T
 <p align="center">
   <img src="screenshots/light.png" width="220" alt="Light Theme Screenshot" />
   <img src="screenshots/dark.png" width="220" alt="Dark Theme Screenshot" />
-</p>
-
-<p align="center">
   <img src="screenshots/amoled.png" width="220" alt="AMOLED Theme Screenshot" />
   <img src="screenshots/high_contrast.png" width="220" alt="High Contrast Screenshot" />
 </p>
