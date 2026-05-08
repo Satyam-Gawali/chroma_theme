@@ -117,16 +117,25 @@ final primaryTone50 = context.chromaTones.primary[50];
 
 ## 🎨 Predefined Palettes
 
-Chroma Theme comes packed with beautiful palettes out of the box:
+Chroma Theme comes with **20+ professionally curated palettes**. You can switch between them instantly using `context.chroma.setPalette()`.
 
-| Palette | Aesthetic |
-| :--- | :--- |
-| `oceanSignal` | Deep blues with safety orange accents |
-| `neonForest` | Dark greens with vibrant highlights |
-| `mintLatte` | Soft, creamy greens and browns |
-| `blackMetal` | Aggressive grays and deep blacks |
-| `softMauve` | Gentle purples and muted tones |
-| ... and 15+ more! | [View all in API Reference](API.md) |
+### 🌿 Nature & Earthy
+- `emerald`, `mintLatte`, `neonForest`, `emeraldRoad`, `colonialNature`
+
+### 🌊 Ocean & Cool
+- `blue`, `oceanSignal`, `midnightMint`, `softOcean`, `colonialWaterloo`
+
+### 🍇 Premium & Rich
+- `berryBlush`, `raisinCaramel`, `royalBerry`, `noirMauve`, `softMauve`
+
+### 🦾 Industrial & Dark
+- `blackMetal`, `onyxSpring`, `midnightChrysocolla`, `khakiSlate`, `armyCoral`
+
+### 🍦 Minimal & Soft
+- `mono`, `iceLatte`, `uniformPalesun`
+
+> [!NOTE]
+> All palettes are Material 3 compatible and automatically adapt to Light, Dark, and AMOLED modes.
 
 ---
 

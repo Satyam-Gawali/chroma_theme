@@ -87,11 +87,17 @@ Supported Overrides:
 | `amoled` | Pure black backgrounds for OLED screens. |
 
 ### `ChromaPalette`
-Over 20+ professionally curated palettes including:
-- `mono`, `blue`, `emerald`
-- `mintLatte`, `berryBlush`, `neonForest`, `oceanSignal`
-- `blackMetal`, `softOcean`, `royalBerry`, `onyxSpring`
-- ... and more.
+The following palettes are available out of the box:
+
+| Category | Palettes |
+| :--- | :--- |
+| **Basic** | `mono`, `blue`, `emerald` |
+| **Earthy** | `mintLatte`, `neonForest`, `emeraldRoad`, `colonialNature` |
+| **Oceanic** | `oceanSignal`, `midnightMint`, `softOcean`, `colonialWaterloo` |
+| **Premium** | `berryBlush`, `raisinCaramel`, `royalBerry`, `noirMauve`, `softMauve` |
+| **Modern Dark** | `blackMetal`, `onyxSpring`, `midnightChrysocolla`, `khakiSlate`, `armyCoral` |
+| **Soft/Neutral** | `iceLatte`, `uniformPalesun` |
+| **Special** | `custom` (Internal use when seeds are set) |
 
 ---
 
