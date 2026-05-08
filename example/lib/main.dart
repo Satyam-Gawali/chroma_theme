@@ -4,6 +4,7 @@ import 'package:chroma_theme/chroma_theme.dart';
 import 'screens/components_tab.dart';
 import 'screens/color_palette_tab.dart';
 import 'screens/settings_tab.dart';
+import 'screens/showcase_screen.dart';
 
 void main() {
   runApp(
@@ -62,11 +63,27 @@ class _ScaffoldWithNavState extends State<ScaffoldWithNav> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset('assets/logo.png'),
+        ),
         title: Text(
-          "🎨 Chroma Theme Showcase",
+          "Chroma Theme",
           style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(
+              context.chroma.isDark ? Icons.light_mode : Icons.dark_mode,
+            ),
+            onPressed: () {
+              context.chroma.setTheme(
+                context.chroma.isDark ? ChromaThemeMode.light : ChromaThemeMode.dark,
+              );
+            },
+          ),
+        ],
       ),
       body: _tabs[_currentIndex],
       bottomNavigationBar: NavigationBar(

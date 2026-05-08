@@ -10,6 +10,18 @@ A premium, dynamic, and adaptive Material 3 theme engine for Flutter. **Chroma T
   <img src="assets/banner.png" alt="Chroma Theme Banner" width="85%">
 </p>
 
+## 📱 Screenshots
+
+<p align="center">
+  <img src="screenshots/light.png" width="220" alt="Light Theme Screenshot" />
+  <img src="screenshots/dark.png" width="220" alt="Dark Theme Screenshot" />
+</p>
+
+<p align="center">
+  <img src="screenshots/amoled.png" width="220" alt="AMOLED Theme Screenshot" />
+  <img src="screenshots/high_contrast.png" width="220" alt="High Contrast Screenshot" />
+</p>
+
 ---
 
 ## ✨ Key Features
@@ -21,6 +33,20 @@ A premium, dynamic, and adaptive Material 3 theme engine for Flutter. **Chroma T
 - 🛠️ **Tonal Palette Access** – Direct access to Material 3 tones (0-100) for every color in your scheme.
 - 🧩 **Component Overrides** – Easily customize specific Material widgets globally without messy `ThemeData` blocks.
 - 🚀 **Zero Boilerplate** – Intuitive `BuildContext` extensions for ultra-fast development.
+
+---
+
+## ❓ Why Chroma Theme?
+
+Managing Material 3 themes manually requires handling dozens of colors, theme modes, and component styles.
+
+Chroma Theme simplifies this into:
+- 🎨 **One seed color** → complete ColorScheme
+- 🌓 **Light, Dark, AMOLED, and High Contrast** modes
+- 🎭 **20+ premium** prebuilt palettes
+- 🧩 **Global component** overrides
+- 💾 **Persistent** theme settings
+- 🚀 **Zero boilerplate** API
 
 ---
 
@@ -171,6 +197,19 @@ class MyThemeStorage implements ThemePersistence {
   @override
   Future<ChromaThemeSettings?> load() async { /* ... */ }
 }
+```
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    A[Seed Colors] --> B[Tonal Palette Generation]
+    B --> C[Material 3 ColorScheme]
+    C --> D[Component Overrides]
+    D --> E[ThemeData]
+    E --> F[Flutter Widgets]
 ```
 
 ---
