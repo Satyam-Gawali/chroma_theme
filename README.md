@@ -7,13 +7,7 @@
 A premium, dynamic, and adaptive Material 3 theme engine for Flutter. **Chroma Theme** simplifies complex theme management, providing system-aware modes, custom tonal palettes, and beautiful animated transitions with zero boilerplate.
 
 <p align="center">
-  <img src="assets/banner.png" alt="Chroma Theme Banner" width="100%" />
-</p>
-
-<h1 align="center">Chroma Theme</h1>
-
-<p align="center">
-Dynamic Material 3 Color Management for Flutter
+  <img src="assets/banner.png" alt="Chroma Theme Banner" width="85%">
 </p>
 
 ---
