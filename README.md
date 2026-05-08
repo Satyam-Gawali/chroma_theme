@@ -1,4 +1,4 @@
-<img src="assets/logo.png" width="64" valign="middle"> <span style="font-size: 32px; font-weight: 800; vertical-align: middle; margin-left: 10px;">Chroma Theme 🎨</span>
+<img src="assets/logo.png" width="64" valign="middle"> <h1 style="display: inline; vertical-align: middle; margin-left: 10px;">Chroma Theme 🎨</h1>
 
 
 
