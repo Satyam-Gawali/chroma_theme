@@ -1,0 +1,26 @@
+name: chroma_theme
+description: "A dynamic, adaptive, and highly customizable Material 3 theme management package for Flutter apps, featuring pre-defined palettes and dynamic seed color generation."
+version: 1.1.0
+homepage: https://github.com/Satyam-Gawali/chroma_theme
+repository: https://github.com/Satyam-Gawali/chroma_theme
+issue_tracker: https://github.com/Satyam-Gawali/chroma_theme/issues
+topics:
+  - flutter
+  - material3
+  - theming
+  - colors
+
+environment:
+  sdk: ^3.11.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
