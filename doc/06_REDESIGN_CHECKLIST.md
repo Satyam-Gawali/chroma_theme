@@ -6,9 +6,9 @@ This master checklist tracks every concrete task, file affected, status, and ver
 
 ## 📊 Overall Progress Summary
 - **Total Tasks:** 32
-- **Completed:** 4
+- **Completed:** 9
 - **In Progress:** 0
-- **Pending:** 28
+- **Pending:** 23
 
 ---
 
@@ -40,25 +40,25 @@ This master checklist tracks every concrete task, file affected, status, and ver
 ## 🎨 Phase 2: Palette Registry & Dead Code Activation
 *Target: Connect all 22 High-Contrast palettes, fix AMOLED color wipe.*
 
-- [ ] **Task 2.1:** Create `PaletteEntry` data model  
+- [x] **Task 2.1:** Create `PaletteEntry` data model  
   - **File:** `lib/src/palettes/palette_registry.dart`  
   - **Change:** Define `PaletteEntry` with `ColorScheme Function() light`, `dark`, and `highContrast`.
 
-- [ ] **Task 2.2:** Register all 22 Palettes in `PaletteRegistry`  
+- [x] **Task 2.2:** Register all 22 Palettes in `PaletteRegistry`  
   - **File:** `lib/src/palettes/palette_registry.dart`  
   - **Change:** Connect `...LightScheme()`, `...DarkScheme()`, and `...HighContrastScheme()` for all 22 palettes.  
   - **Verification:** Zero unused `_high_contrast.dart` files across the codebase.
 
-- [ ] **Task 2.3:** Overhaul `ChromaColorSchemeBuilder` for High-Contrast  
+- [x] **Task 2.3:** Overhaul `ChromaColorSchemeBuilder` for High-Contrast  
   - **File:** `lib/src/builder/chroma_color_scheme_builder.dart`  
   - **Change:** Route `ChromaThemeMode.highContrast` to the active palette's `entry.highContrast()`. Fall back to high-contrast seed adjustment only when seeds are active.
 
-- [ ] **Task 2.4:** Overhaul `ChromaColorSchemeBuilder` for AMOLED  
+- [x] **Task 2.4:** Overhaul `ChromaColorSchemeBuilder` for AMOLED  
   - **File:** `lib/src/builder/chroma_color_scheme_builder.dart`  
   - **Change:** Preserve the active palette's primary/secondary/tertiary colors and turn surfaces into pure black (`#000000`).  
   - **Verification:** Switching to AMOLED keeps brand accents intact without falling back to generic dark scheme.
 
-- [ ] **Task 2.5:** Add runtime Custom Palette Registration  
+- [x] **Task 2.5:** Add runtime Custom Palette Registration  
   - **File:** `lib/src/palettes/palette_registry.dart`  
   - **Change:** Expose `PaletteRegistry.registerCustom(...)` to allow developers to supply custom palette entries dynamically.
 

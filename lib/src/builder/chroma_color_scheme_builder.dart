@@ -19,37 +19,46 @@ class ChromaColorSchemeBuilder {
       brightness = mode.isDark ? Brightness.dark : Brightness.light;
     }
 
+    final bool isHighContrast = mode == ChromaThemeMode.highContrast;
+    final bool isAmoled = mode == ChromaThemeMode.amoled;
+
     // 🔥 1. Seeds priority (TOP PRIORITY)
     if (seeds != null && !seeds.isEmpty) {
       final scheme = _fromSeeds(seeds, brightness);
 
       // 🔥 If high contrast + seeds → apply contrast overrides ON TOP of seeds
-      if (mode == ChromaThemeMode.highContrast) {
+      if (isHighContrast) {
         return _applyHighContrast(scheme);
       }
 
       // 🔥 If amoled + seeds → force pure black surface
-      if (mode == ChromaThemeMode.amoled) {
+      if (isAmoled) {
         return _applyAmoled(scheme);
       }
 
       return scheme;
     }
 
-    // 🔥 2. Special modes overrides (no seeds)
-    if (mode == ChromaThemeMode.highContrast) {
+    // 🔥 2. Palette Registry (DYNAMIC)
+    final entry = PaletteRegistry.get(palette);
+
+    if (entry != null) {
+      if (isHighContrast) {
+        return entry.highContrast();
+      }
+      if (isAmoled) {
+        return _applyAmoled(entry.dark());
+      }
+      return brightness == Brightness.dark ? entry.dark() : entry.light();
+    }
+
+    // 🔥 3. Special modes fallbacks (when no palette is found)
+    if (isHighContrast) {
       return _highContrastScheme();
     }
 
-    if (mode == ChromaThemeMode.amoled) {
+    if (isAmoled) {
       return _amoledScheme();
-    }
-
-    // 🔥 3. Palette Registry (DYNAMIC)
-    final builder = PaletteRegistry.get(palette);
-
-    if (builder != null) {
-      return builder(brightness);
     }
 
     // 🔥 4. Fallback (safety)
@@ -119,6 +128,8 @@ class ChromaColorSchemeBuilder {
   static ColorScheme _applyAmoled(ColorScheme base) {
     return base.copyWith(
       surface: Colors.black,
+      surfaceDim: Colors.black,
+      surfaceBright: const Color(0xFF181818),
       surfaceContainerLowest: Colors.black,
       surfaceContainerLow: const Color(0xFF050505),
       surfaceContainer: const Color(0xFF0A0A0A),
@@ -286,8 +297,7 @@ class ChromaColorSchemeBuilder {
   }
 
   static Color _contrastFor(Color color) {
-    final luminance = (0.299 * color.r + 0.587 * color.g + 0.114 * color.b);
-    return luminance > 0.5 ? Colors.black : Colors.white;
+    return color.computeLuminance() > 0.5 ? Colors.black : Colors.white;
   }
 }
 
