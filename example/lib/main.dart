@@ -3,7 +3,7 @@ import 'package:chroma_theme/chroma_theme.dart';
 
 void main() {
   runApp(
-    ChromaTheme(
+    ChromaTheme.builder(
       initialMode: ChromaThemeMode.system,
       initialPalette: ChromaPalette.blue,
       overrides: ChromaOverrides(
@@ -17,7 +17,16 @@ void main() {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         ),
       ),
-      child: const ChromaExampleApp(),
+      builder: (context, theme, darkTheme, themeMode) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Chroma Theme Example',
+          theme: theme,
+          darkTheme: darkTheme,
+          themeMode: themeMode,
+          home: const ChromaExampleApp(),
+        );
+      },
     ),
   );
 }

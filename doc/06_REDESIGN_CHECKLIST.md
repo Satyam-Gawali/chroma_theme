@@ -6,9 +6,9 @@ This master checklist tracks every concrete task, file affected, status, and ver
 
 ## 📊 Overall Progress Summary
 - **Total Tasks:** 32
-- **Completed:** 16
+- **Completed:** 19
 - **In Progress:** 0
-- **Pending:** 16
+- **Pending:** 13
 
 ---
 
@@ -107,15 +107,15 @@ This master checklist tracks every concrete task, file affected, status, and ver
 ## 🧹 Phase 5: Example App & Cleanup
 *Target: Remove orphan files, remove unused dependencies, modernize playground.*
 
-- [ ] **Task 5.1:** Clean `example/lib/screens/` dead files  
+- [x] **Task 5.1:** Clean `example/lib/screens/` dead files  
   - **Directory:** `example/lib/screens/`  
   - **Change:** Remove unused, duplicate screen files.
 
-- [ ] **Task 5.2:** Remove `chroma_kit` dependency from example  
+- [x] **Task 5.2:** Remove `chroma_kit` dependency from example  
   - **File:** `example/pubspec.yaml`  
   - **Change:** Remove `chroma_kit: ^1.1.0`.
 
-- [ ] **Task 5.3:** Refactor `example/lib/main.dart` with `ChromaTheme.builder`  
+- [x] **Task 5.3:** Refactor `example/lib/main.dart` with `ChromaTheme.builder`  
   - **File:** `example/lib/main.dart`  
   - **Change:** Update demo app to demonstrate `ChromaTheme.builder`, all 5 modes, and all 22 palettes interactively.
 
