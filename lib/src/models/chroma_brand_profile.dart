@@ -7,6 +7,9 @@ class ChromaBrandProfile {
   /// Unique name / key of the brand (e.g. "AcmeCorp", "ClientA").
   final String name;
 
+  /// Identifier alias for [name].
+  String get id => name;
+
   /// Optional display title or label.
   final String? label;
 
@@ -23,13 +26,14 @@ class ChromaBrandProfile {
   final String? fontFamily;
 
   const ChromaBrandProfile({
-    required this.name,
+    String? id,
+    String? name,
     this.label,
     this.palette,
     this.seeds,
     this.overrides,
     this.fontFamily,
-  });
+  }) : name = name ?? id ?? 'default_brand';
 
   @override
   bool operator ==(Object other) {

@@ -148,11 +148,15 @@ class ChromaThemeController extends ChangeNotifier {
   // Superpowers 🚀
   // =========================
 
-  /// Extracts the dominant seed color from an [ImageProvider] (e.g. album art, profile picture, logo)
-  /// and dynamically creates a matching theme!
+  /// Extracts dominant seed colors from an [ImageProvider] (e.g. wallpaper, album art, logo)
+  /// and dynamically creates a rich Material 3 theme!
   Future<void> setThemeFromImage(ImageProvider provider) async {
-    final primarySeed = await ImageThemeExtractor.extractPrimarySeed(provider: provider);
-    setDynamicSeed(primarySeed);
+    final scheme = await ImageThemeExtractor.extractScheme(provider: provider);
+    setSeeds(ChromaSeeds(
+      primary: scheme.primary,
+      secondary: scheme.secondary,
+      tertiary: scheme.tertiary,
+    ));
   }
 
   /// Registers a [ChromaBrandProfile] for white-label or multi-tenant theming.

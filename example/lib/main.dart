@@ -6,6 +6,24 @@ void main() {
     ChromaTheme.builder(
       initialMode: ChromaThemeMode.system,
       initialPalette: ChromaPalette.emerald,
+      brandProfiles: const [
+        ChromaBrandProfile(
+          name: 'Eco Emerald',
+          palette: ChromaPalette.emerald,
+        ),
+        ChromaBrandProfile(
+          name: 'Ocean Fintech',
+          palette: ChromaPalette.oceanSignal,
+        ),
+        ChromaBrandProfile(
+          name: 'Royal Berry',
+          palette: ChromaPalette.royalBerry,
+        ),
+        ChromaBrandProfile(
+          name: 'Neon Cyber',
+          palette: ChromaPalette.neonForest,
+        ),
+      ],
       overrides: ChromaOverrides(
         appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
         cardTheme: CardThemeData(
@@ -42,10 +60,11 @@ class _ChromaExampleAppState extends State<ChromaExampleApp> {
   int _currentIndex = 0;
 
   final List<Widget> _tabs = const [
-    _ComponentsTab(),
-    _PaletteTokensTab(),
+    _UiKitTab(),
+    _WallpaperThemeTab(),
+    _ColorMatrixTab(),
     _SuperpowersTab(),
-    _SettingsTab(),
+    _EngineSettingsTab(),
   ];
 
   @override
@@ -81,7 +100,7 @@ class _ChromaExampleAppState extends State<ChromaExampleApp> {
           ),
           IconButton(
             icon: Icon(isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded),
-            tooltip: 'Quick Toggle',
+            tooltip: 'Quick Toggle (Light/Dark/AMOLED)',
             onPressed: () => context.toggleTheme(supportAmoled: true),
           ),
           IconButton(
@@ -91,7 +110,7 @@ class _ChromaExampleAppState extends State<ChromaExampleApp> {
           ),
           IconButton(
             icon: const Icon(Icons.code_rounded),
-            tooltip: 'Export Theme Code',
+            tooltip: 'Export Pure Flutter Theme',
             onPressed: () => _showExportDialog(context),
           ),
         ],
@@ -105,6 +124,11 @@ class _ChromaExampleAppState extends State<ChromaExampleApp> {
             icon: Icon(Icons.widgets_outlined),
             selectedIcon: Icon(Icons.widgets_rounded),
             label: 'UI Kit',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.wallpaper_outlined),
+            selectedIcon: Icon(Icons.wallpaper_rounded),
+            label: 'Wallpapers',
           ),
           NavigationDestination(
             icon: Icon(Icons.color_lens_outlined),
@@ -140,7 +164,7 @@ class _ChromaExampleAppState extends State<ChromaExampleApp> {
           children: [
             Icon(Icons.code_rounded),
             SizedBox(width: 8),
-            Text('Exported Pure Flutter Code'),
+            Text('Pure Flutter Theme Code'),
           ],
         ),
         content: SizedBox(
@@ -165,18 +189,19 @@ class _ChromaExampleAppState extends State<ChromaExampleApp> {
 }
 
 // =============================================================================
-// TAB 1: UI COMPONENTS & DROP-IN WIDGETS
+// TAB 1: UI KIT & DROP-IN WIDGETS
 // =============================================================================
-class _ComponentsTab extends StatefulWidget {
-  const _ComponentsTab();
+class _UiKitTab extends StatefulWidget {
+  const _UiKitTab();
 
   @override
-  State<_ComponentsTab> createState() => _ComponentsTabState();
+  State<_UiKitTab> createState() => _UiKitTabState();
 }
 
-class _ComponentsTabState extends State<_ComponentsTab> {
+class _UiKitTabState extends State<_UiKitTab> {
   bool _switchVal = true;
   bool _checkVal = true;
+  int _chipSelection = 1;
   double _sliderVal = 0.65;
   int _segmentedIndex = 0;
 
@@ -278,6 +303,10 @@ class _ComponentsTabState extends State<_ComponentsTab> {
               onPressed: () {},
               child: const Text('Elevated'),
             ),
+            TextButton(
+              onPressed: () {},
+              child: const Text('Text Button'),
+            ),
           ],
         ),
 
@@ -295,28 +324,83 @@ class _ComponentsTabState extends State<_ComponentsTab> {
         ),
 
         const SizedBox(height: 24),
-        _sectionTitle(context, 'Inputs & Progress'),
+        _sectionTitle(context, 'Selection Controls & Sliders'),
         const SizedBox(height: 12),
         Row(
           children: [
             Checkbox(value: _checkVal, onChanged: (v) => setState(() => _checkVal = v ?? true)),
-            const Text('Agree to Terms'),
+            const Text('Enabled'),
             const Spacer(),
             Switch(value: _switchVal, onChanged: (v) => setState(() => _switchVal = v)),
             const Text('Active'),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          children: [
+            ChoiceChip(
+              label: const Text('Standard Mode'),
+              selected: _chipSelection == 1,
+              onSelected: (_) => setState(() => _chipSelection = 1),
+            ),
+            ChoiceChip(
+              label: const Text('Turbo Mode'),
+              selected: _chipSelection == 2,
+              onSelected: (_) => setState(() => _chipSelection = 2),
+            ),
           ],
         ),
         Slider(
           value: _sliderVal,
           onChanged: (v) => setState(() => _sliderVal = v),
         ),
-        const SizedBox(height: 8),
+
+        const SizedBox(height: 20),
+        _sectionTitle(context, 'Text Fields & Feedback'),
+        const SizedBox(height: 12),
         const TextField(
           decoration: InputDecoration(
-            labelText: 'Dynamic Material 3 Input',
-            hintText: 'Enter text here...',
+            labelText: 'Search or Input Field',
+            hintText: 'Type to test colors...',
             prefixIcon: Icon(Icons.search_rounded),
+            suffixIcon: Icon(Icons.clear_rounded),
           ),
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: [
+            ElevatedButton.icon(
+              icon: const Icon(Icons.notifications_active_outlined),
+              label: const Text('Show SnackBar'),
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('Dynamic Theme SnackBar with proper M3 contrast!'),
+                    action: SnackBarAction(label: 'UNDO', onPressed: () {}),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(width: 12),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.message_outlined),
+              label: const Text('Show Dialog'),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: const Text('Dynamic M3 Dialog'),
+                    content: const Text('This dialog uses your active ColorScheme container and surface tokens.'),
+                    actions: [
+                      TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+                      FilledButton(onPressed: () => Navigator.pop(ctx), child: const Text('Confirm')),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
         ),
         const SizedBox(height: 24),
       ],
@@ -337,10 +421,394 @@ class _ComponentsTabState extends State<_ComponentsTab> {
 }
 
 // =============================================================================
-// TAB 2: 44 COLOR TOKENS & TONAL PALETTES
+// TAB 2: WALLPAPERS & MOBILE DYNAMIC THEME EXTRACTOR
 // =============================================================================
-class _PaletteTokensTab extends StatelessWidget {
-  const _PaletteTokensTab();
+class _WallpaperItem {
+  final String title;
+  final String subtitle;
+  final ImageProvider<Object> provider;
+  final Color fallbackColor;
+
+  const _WallpaperItem({
+    required this.title,
+    required this.subtitle,
+    required this.provider,
+    required this.fallbackColor,
+  });
+}
+
+class _WallpaperThemeTab extends StatefulWidget {
+  const _WallpaperThemeTab();
+
+  @override
+  State<_WallpaperThemeTab> createState() => _WallpaperThemeTabState();
+}
+
+class _WallpaperThemeTabState extends State<_WallpaperThemeTab> {
+  bool _isLoading = false;
+  String _selectedWallpaper = 'Deep Forest';
+  final TextEditingController _urlController = TextEditingController();
+
+  final List<_WallpaperItem> _wallpapers = const [
+    _WallpaperItem(
+      title: 'Deep Forest',
+      subtitle: 'Emerald greens & earth moss',
+      provider: NetworkImage('https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80'),
+      fallbackColor: Color(0xFF2E7D32),
+    ),
+    _WallpaperItem(
+      title: 'Sunset Horizon',
+      subtitle: 'Warm amber, violet & dusk',
+      provider: NetworkImage('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80'),
+      fallbackColor: Color(0xFFE65100),
+    ),
+    _WallpaperItem(
+      title: 'Cyberpunk Neon',
+      subtitle: 'Electric magenta & cyan glow',
+      provider: NetworkImage('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80'),
+      fallbackColor: Color(0xFF8E24AA),
+    ),
+    _WallpaperItem(
+      title: 'Ocean Depths',
+      subtitle: 'Deep sapphire & arctic foam',
+      provider: NetworkImage('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&q=80'),
+      fallbackColor: Color(0xFF0277BD),
+    ),
+    _WallpaperItem(
+      title: 'Desert Dunes',
+      subtitle: 'Golden terracotta & sunlit sand',
+      provider: NetworkImage('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80'),
+      fallbackColor: Color(0xFFD84315),
+    ),
+    _WallpaperItem(
+      title: 'Chroma Brand Banner',
+      subtitle: 'Bundled local asset banner',
+      provider: AssetImage('assets/banner.png'),
+      fallbackColor: Color(0xFF00796B),
+    ),
+  ];
+
+  Future<void> _extractFromWallpaper(_WallpaperItem wallpaper) async {
+    setState(() {
+      _isLoading = true;
+      _selectedWallpaper = wallpaper.title;
+    });
+
+    try {
+      await context.chroma.setThemeFromImage(wallpaper.provider);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Theme extracted dynamically from "${wallpaper.title}"!'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        context.chroma.setDynamicSeed(wallpaper.fallbackColor);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Network image failed, applied fallback seed color.'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _extractFromCustomUrl() async {
+    final url = _urlController.text.trim();
+    if (url.isEmpty) return;
+
+    setState(() => _isLoading = true);
+    try {
+      await context.chroma.setThemeFromImage(NetworkImage(url));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Theme extracted from custom image URL!')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not load image: $e')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.chromaColors;
+    final chroma = context.chroma;
+
+    return ListView(
+      padding: const EdgeInsets.all(20),
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Wallpaper Theme Extractor 🖼️',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Extract dynamic M3 themes from mobile wallpapers:',
+                  style: TextStyle(fontSize: 13, color: colors.onSurfaceVariant),
+                ),
+              ],
+            ),
+            if (_isLoading)
+              const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2.5)),
+          ],
+        ),
+
+        const SizedBox(height: 16),
+
+        // Device System Wallpaper (Material You Monet)
+        Card(
+          color: colors.surfaceContainerLow,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.phone_android_rounded, color: colors.primary),
+                    const SizedBox(width: 8),
+                    const Text(
+                      'Mobile Wallpaper (Android 12+ Material You)',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'On Android devices, system wallpaper dynamic colors sync directly into Chroma Theme via setDynamicSeed(). Tap a system wallpaper seed below to test:',
+                  style: TextStyle(fontSize: 12, color: colors.onSurfaceVariant),
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ActionChip(
+                      avatar: const CircleAvatar(backgroundColor: Color(0xFF1B72E8), radius: 6),
+                      label: const Text('Pixel Blue Wallpaper'),
+                      onPressed: () {
+                        chroma.setDynamicSeed(const Color(0xFF1B72E8));
+                        setState(() => _selectedWallpaper = 'Pixel Blue Wallpaper');
+                      },
+                    ),
+                    ActionChip(
+                      avatar: const CircleAvatar(backgroundColor: Color(0xFF137333), radius: 6),
+                      label: const Text('Forest Wallpaper'),
+                      onPressed: () {
+                        chroma.setDynamicSeed(const Color(0xFF137333));
+                        setState(() => _selectedWallpaper = 'Forest Wallpaper');
+                      },
+                    ),
+                    ActionChip(
+                      avatar: const CircleAvatar(backgroundColor: Color(0xFFE8710A), radius: 6),
+                      label: const Text('Sunset Wallpaper'),
+                      onPressed: () {
+                        chroma.setDynamicSeed(const Color(0xFFE8710A));
+                        setState(() => _selectedWallpaper = 'Sunset Wallpaper');
+                      },
+                    ),
+                    ActionChip(
+                      avatar: const CircleAvatar(backgroundColor: Color(0xFF9C27B0), radius: 6),
+                      label: const Text('Lavender Wallpaper'),
+                      onPressed: () {
+                        chroma.setDynamicSeed(const Color(0xFF9C27B0));
+                        setState(() => _selectedWallpaper = 'Lavender Wallpaper');
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 16),
+
+        // Active Extracted Palette Summary
+        Card(
+          color: colors.surfaceContainerLow,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.auto_awesome_rounded, color: colors.primary),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Active Source: $_selectedWallpaper',
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                    const Spacer(),
+                    if (chroma.seeds != null)
+                      TextButton(
+                        onPressed: () {
+                          chroma.clearSeeds();
+                          chroma.setPalette(ChromaPalette.emerald);
+                          setState(() => _selectedWallpaper = 'Emerald Palette');
+                        },
+                        child: const Text('Reset Seeds'),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    _colorChip('Primary', colors.primary, colors.onPrimary),
+                    const SizedBox(width: 8),
+                    _colorChip('Secondary', colors.secondary, colors.onSecondary),
+                    const SizedBox(width: 8),
+                    _colorChip('Tertiary', colors.tertiary, colors.onTertiary),
+                    const SizedBox(width: 8),
+                    _colorChip('Surface', colors.surface, colors.onSurface),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        // Wallpaper Grid
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: _wallpapers.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1.15,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+          ),
+          itemBuilder: (ctx, index) {
+            final w = _wallpapers[index];
+            final isSelected = _selectedWallpaper == w.title;
+
+            return InkWell(
+              borderRadius: BorderRadius.circular(16),
+              onTap: _isLoading ? null : () => _extractFromWallpaper(w),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: isSelected ? colors.primary : Colors.black12,
+                    width: isSelected ? 3 : 1,
+                  ),
+                  image: DecorationImage(
+                    image: w.provider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(13),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withValues(alpha: 0.8),
+                      ],
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(12),
+                  alignment: Alignment.bottomLeft,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        w.title,
+                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
+                      ),
+                      Text(
+                        w.subtitle,
+                        style: const TextStyle(color: Colors.white70, fontSize: 10),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+
+        const SizedBox(height: 24),
+
+        // Custom URL input
+        const Text('Custom Wallpaper Image URL:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: _urlController,
+                decoration: const InputDecoration(
+                  hintText: 'https://example.com/wallpaper.jpg',
+                  isDense: true,
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            FilledButton.icon(
+              icon: const Icon(Icons.download_rounded, size: 18),
+              label: const Text('Extract'),
+              onPressed: _isLoading ? null : _extractFromCustomUrl,
+            ),
+          ],
+        ),
+        const SizedBox(height: 24),
+      ],
+    );
+  }
+
+  Widget _colorChip(String label, Color color, Color onColor) {
+    return Expanded(
+      child: Container(
+        height: 38,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.black12),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          label,
+          style: TextStyle(color: onColor, fontSize: 10, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+
+// =============================================================================
+// TAB 3: 44 COLOR TOKENS & TONAL MATRIX
+// =============================================================================
+class _ColorMatrixTab extends StatelessWidget {
+  const _ColorMatrixTab();
 
   @override
   Widget build(BuildContext context) {
@@ -420,8 +888,56 @@ class _PaletteTokensTab extends StatelessWidget {
           _ColorBox('inverseSurface', colors.inverseSurface, colors.onInverseSurface),
           _ColorBox('inversePrimary', colors.inversePrimary, colors.onSurface),
         ]),
+
+        const SizedBox(height: 24),
+        _categoryHeader('Chroma Theme Color Utilities'),
+        Card(
+          color: colors.surfaceContainerLow,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Harmonization & Toning (ChromaThemeUtils)',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    _utilityBox('Original Red', Colors.red, Colors.white),
+                    const Icon(Icons.arrow_forward_rounded, size: 16),
+                    _utilityBox(
+                      'Harmonized',
+                      ChromaThemeUtils.harmonize(Colors.red, colors.primary),
+                      Colors.white,
+                    ),
+                    const SizedBox(width: 8),
+                    _utilityBox(
+                      'Lighten +20%',
+                      ChromaThemeUtils.lighten(colors.primary, 0.2),
+                      Colors.black,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
         const SizedBox(height: 24),
       ],
+    );
+  }
+
+  Widget _utilityBox(String label, Color color, Color textColor) {
+    return Expanded(
+      child: Container(
+        height: 48,
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(8)),
+        alignment: Alignment.center,
+        child: Text(label, style: TextStyle(color: textColor, fontSize: 9, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+      ),
     );
   }
 
@@ -506,7 +1022,7 @@ class _ColorBox extends StatelessWidget {
 }
 
 // =============================================================================
-// TAB 3: SUPERPOWERS & TOOLS
+// TAB 4: SUPERPOWERS HUB
 // =============================================================================
 class _SuperpowersTab extends StatelessWidget {
   const _SuperpowersTab();
@@ -741,10 +1257,10 @@ class _SuperpowersTab extends StatelessWidget {
 }
 
 // =============================================================================
-// TAB 4: ENGINE SETTINGS
+// TAB 5: ENGINE SETTINGS & PALETTE EXPLORER
 // =============================================================================
-class _SettingsTab extends StatelessWidget {
-  const _SettingsTab();
+class _EngineSettingsTab extends StatelessWidget {
+  const _EngineSettingsTab();
 
   @override
   Widget build(BuildContext context) {
@@ -776,10 +1292,24 @@ class _SettingsTab extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text('All 22 Palettes', style: TextStyle(fontWeight: FontWeight.bold)),
-            TextButton.icon(
-              icon: const Icon(Icons.shuffle, size: 16),
-              label: const Text('Randomize'),
-              onPressed: () => chroma.randomPalette(),
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_rounded, size: 16),
+                  tooltip: 'Previous Palette',
+                  onPressed: () => chroma.previousPalette(),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.arrow_forward_ios_rounded, size: 16),
+                  tooltip: 'Next Palette',
+                  onPressed: () => chroma.nextPalette(),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.shuffle, size: 18),
+                  tooltip: 'Random',
+                  onPressed: () => chroma.randomPalette(),
+                ),
+              ],
             ),
           ],
         ),
@@ -833,6 +1363,46 @@ class _SettingsTab extends StatelessWidget {
               ),
             );
           }).toList(),
+        ),
+
+        const SizedBox(height: 28),
+        const Text('Multi-Seed Designer', style: TextStyle(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 8),
+        const Text('Combine custom Primary, Secondary, and Neutral seeds:'),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            ActionChip(
+              avatar: const Icon(Icons.palette_rounded, size: 16),
+              label: const Text('Mint & Lavender Seeds'),
+              onPressed: () {
+                chroma.setSeeds(
+                  const ChromaSeeds(
+                    primary: Color(0xFF00A896),
+                    secondary: Color(0xFF8E7DBE),
+                    neutralLight: Color(0xFFF7FBF9),
+                    neutralDark: Color(0xFF101815),
+                  ),
+                );
+              },
+            ),
+            ActionChip(
+              avatar: const Icon(Icons.palette_rounded, size: 16),
+              label: const Text('Gold & Indigo Seeds'),
+              onPressed: () {
+                chroma.setSeeds(
+                  const ChromaSeeds(
+                    primary: Color(0xFFFFB703),
+                    secondary: Color(0xFF023047),
+                    neutralLight: Color(0xFFFFFDF5),
+                    neutralDark: Color(0xFF131518),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
         const SizedBox(height: 32),
       ],
