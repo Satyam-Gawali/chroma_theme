@@ -6,9 +6,9 @@ This master checklist tracks every concrete task, file affected, status, and ver
 
 ## 📊 Overall Progress Summary
 - **Total Tasks:** 32
-- **Completed:** 13
+- **Completed:** 16
 - **In Progress:** 0
-- **Pending:** 19
+- **Pending:** 16
 
 ---
 
@@ -90,15 +90,15 @@ This master checklist tracks every concrete task, file affected, status, and ver
 ## ⚡ Phase 4: Performance & Utilities Refinement
 *Target: Cache tonal palettes and eliminate re-calculation jank.*
 
-- [ ] **Task 4.1:** Refactor `ChromaTones`  
+- [x] **Task 4.1:** Refactor `ChromaTones`  
   - **File:** `lib/src/models/chroma_tones.dart`  
   - **Change:** Cache tonal palettes per `ColorScheme`. Improve lightness/contrast mapping.
 
-- [ ] **Task 4.2:** Optimize `context.chromaTones` extension  
+- [x] **Task 4.2:** Optimize `context.chromaTones` extension  
   - **File:** `lib/src/extensions/chroma_theme_extension.dart`  
   - **Change:** Read cached tones from the controller instead of regenerating 78 colors on every build call.
 
-- [ ] **Task 4.3:** Verify and harden `ChromaThemeUtils`  
+- [x] **Task 4.3:** Verify and harden `ChromaThemeUtils`  
   - **File:** `lib/src/utils/chroma_theme_utils.dart`  
   - **Change:** Ensure Hex string parser handles `#RGB`, `#RRGGBB`, and `#AARRGGBB` safely without crashing.
 

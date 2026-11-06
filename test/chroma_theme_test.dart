@@ -99,4 +99,41 @@ void main() {
       expect(find.text('Mode: system'), findsOneWidget);
     });
   });
+
+  group('ChromaTones & TonalPalettes', () {
+    test('generates, caches and interpolates tones', () {
+      final scheme = ColorScheme.fromSeed(seedColor: Colors.blue);
+      final tones1 = ChromaTones.generate(scheme);
+      final tones2 = ChromaTones.generate(scheme);
+
+      // Verify Expando cache identity
+      expect(identical(tones1, tones2), isTrue);
+
+      expect(tones1.primary[0], const Color(0xFF000000));
+      expect(tones1.primary[100], const Color(0xFFFFFFFF));
+
+      // Test interpolation between known tones
+      final interpolated = tones1.primary[45];
+      expect(interpolated, isNotNull);
+    });
+  });
+
+  group('ChromaThemeUtils', () {
+    test('parses various hex formats accurately', () {
+      expect(ChromaThemeUtils.fromHex('#FFF'), const Color(0xFFFFFFFF));
+      expect(ChromaThemeUtils.fromHex('000'), const Color(0xFF000000));
+      expect(ChromaThemeUtils.fromHex('#FF0000'), const Color(0xFFFF0000));
+      expect(ChromaThemeUtils.fromHex('8000FF00'), const Color(0x8000FF00));
+      expect(ChromaThemeUtils.fromHex('invalid'), isNull);
+      expect(ChromaThemeUtils.fromHex(''), isNull);
+    });
+
+    test('converts Color to hex format', () {
+      expect(ChromaThemeUtils.toHex(const Color(0xFFFF0000)), '#FF0000');
+      expect(
+        ChromaThemeUtils.toHex(const Color(0x8000FF00), includeAlpha: true),
+        '#8000FF00',
+      );
+    });
+  });
 }
