@@ -1,0 +1,19 @@
+# Assets and branding for GitHub / Docs only
+assets/
+screenshots/
+doc/
+
+# IDE & OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Build & temporary files
+build/
+.dart_tool/
+
+# Example build artifacts
+example/build/
+example/.dart_tool/

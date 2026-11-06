@@ -6,31 +6,31 @@ This master checklist tracks every concrete task, file affected, status, and ver
 
 ## 📊 Overall Progress Summary
 - **Total Tasks:** 32
-- **Completed:** 0
+- **Completed:** 4
 - **In Progress:** 0
-- **Pending:** 32
+- **Pending:** 28
 
 ---
 
 ## 📦 Phase 1: Package Metadata, Configuration & Bloat Cleanup
 *Target: Fix versioning, eliminate 1.9MB asset bloat, configure pub publishing rules.*
 
-- [ ] **Task 1.1:** Fix `pubspec.yaml` environment SDK versions  
+- [x] **Task 1.1:** Fix `pubspec.yaml` environment SDK versions  
   - **File:** `pubspec.yaml`  
   - **Change:** Set `sdk: ">=3.3.0 <4.0.0"` and `flutter: ">=3.27.0"`.  
   - **Verification:** Run `dart pub get` with zero errors.
 
-- [ ] **Task 1.2:** Remove promotional asset entries from package configuration  
+- [x] **Task 1.2:** Remove promotional asset entries from package configuration  
   - **File:** `pubspec.yaml`  
   - **Change:** Remove `flutter: assets: - assets/banner.png - assets/logo.png`.  
   - **Verification:** Ensure images remain in `assets/` on disk for GitHub README, but are omitted from package bundling.
 
-- [ ] **Task 1.3:** Create `.pubignore` file  
+- [x] **Task 1.3:** Create `.pubignore` file  
   - **File:** `.pubignore`  
   - **Change:** Add rules ignoring `assets/`, `screenshots/`, `doc/`, `.idea/`, `example/build/`.  
   - **Verification:** Run `dart pub publish --dry-run` to verify published package size is <50 KB.
 
-- [ ] **Task 1.4:** Update `analysis_options.yaml`  
+- [x] **Task 1.4:** Update `analysis_options.yaml`  
   - **File:** `analysis_options.yaml`  
   - **Change:** Ensure strict lint rules (`prefer_const_constructors`, `avoid_print`, etc.).  
   - **Verification:** Zero static analyzer errors.
