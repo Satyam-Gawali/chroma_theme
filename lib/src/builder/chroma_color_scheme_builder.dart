@@ -235,6 +235,21 @@ class ChromaColorSchemeBuilder {
       );
     }
 
+    // 🧱 Resolve clean neutral surfaces
+    final bool isLight = brightness == Brightness.light;
+    final cleanDefaultSurface = isLight ? const Color(0xFFFFFFFF) : const Color(0xFF121316);
+    final cleanDefaultSurfaceDim = isLight ? const Color(0xFFEDEDF0) : const Color(0xFF0E0F12);
+    final cleanDefaultSurfaceBright = isLight ? const Color(0xFFFFFFFF) : const Color(0xFF282A32);
+    final cleanDefaultContainerLowest = isLight ? const Color(0xFFFFFFFF) : const Color(0xFF0B0C0E);
+    final cleanDefaultContainerLow = isLight ? const Color(0xFFF8F9FA) : const Color(0xFF18191E);
+    final cleanDefaultContainer = isLight ? const Color(0xFFF1F3F5) : const Color(0xFF1F2026);
+    final cleanDefaultContainerHigh = isLight ? const Color(0xFFE9ECEF) : const Color(0xFF262830);
+    final cleanDefaultContainerHighest = isLight ? const Color(0xFFE2E4E8) : const Color(0xFF2F313B);
+    final cleanDefaultOnSurface = isLight ? const Color(0xFF111827) : const Color(0xFFF3F4F6);
+    final cleanDefaultOnSurfaceVariant = isLight ? const Color(0xFF4B5563) : const Color(0xFF9CA3AF);
+    final cleanDefaultOutline = isLight ? const Color(0xFFCBD5E1) : const Color(0xFF4B5563);
+    final cleanDefaultOutlineVariant = isLight ? const Color(0xFFE5E7EB) : const Color(0xFF2D3038);
+
     // 🧱 Resolve surface colors
     final surfaceColors = directSurface != null
         ? _directSurfaceTones(directSurface, brightness)
@@ -261,30 +276,30 @@ class ChromaColorSchemeBuilder {
       onTertiaryFixed: tertiaryScheme?.onPrimaryFixed ?? base.onTertiaryFixed,
       onTertiaryFixedVariant: tertiaryScheme?.onPrimaryFixedVariant ?? base.onTertiaryFixedVariant,
 
-      // 🧱 Surfaces
-      surface: surfaceColors?.surface ?? neutralScheme?.surface ?? base.surface,
-      onSurface: surfaceColors?.onSurface ?? neutralScheme?.onSurface ?? base.onSurface,
-      onSurfaceVariant: surfaceColors?.onSurfaceVariant ?? neutralScheme?.onSurfaceVariant ?? base.onSurfaceVariant,
-      surfaceDim: surfaceColors?.surfaceDim ?? neutralScheme?.surfaceDim ?? base.surfaceDim,
-      surfaceBright: surfaceColors?.surfaceBright ?? neutralScheme?.surfaceBright ?? base.surfaceBright,
+      // 🧱 Surfaces (Crisp & Clean, Zero Muddy Tinting)
+      surface: surfaceColors?.surface ?? neutralScheme?.surface ?? cleanDefaultSurface,
+      onSurface: surfaceColors?.onSurface ?? neutralScheme?.onSurface ?? cleanDefaultOnSurface,
+      onSurfaceVariant: surfaceColors?.onSurfaceVariant ?? neutralScheme?.onSurfaceVariant ?? cleanDefaultOnSurfaceVariant,
+      surfaceDim: surfaceColors?.surfaceDim ?? neutralScheme?.surfaceDim ?? cleanDefaultSurfaceDim,
+      surfaceBright: surfaceColors?.surfaceBright ?? neutralScheme?.surfaceBright ?? cleanDefaultSurfaceBright,
 
       surfaceContainerLowest:
-          surfaceColors?.containerLowest ?? neutralScheme?.surfaceContainerLowest ?? base.surfaceContainerLowest,
+          surfaceColors?.containerLowest ?? neutralScheme?.surfaceContainerLowest ?? cleanDefaultContainerLowest,
       surfaceContainerLow:
-          surfaceColors?.containerLow ?? neutralScheme?.surfaceContainerLow ?? base.surfaceContainerLow,
+          surfaceColors?.containerLow ?? neutralScheme?.surfaceContainerLow ?? cleanDefaultContainerLow,
       surfaceContainer:
-          surfaceColors?.container ?? neutralScheme?.surfaceContainer ?? base.surfaceContainer,
+          surfaceColors?.container ?? neutralScheme?.surfaceContainer ?? cleanDefaultContainer,
       surfaceContainerHigh:
-          surfaceColors?.containerHigh ?? neutralScheme?.surfaceContainerHigh ?? base.surfaceContainerHigh,
+          surfaceColors?.containerHigh ?? neutralScheme?.surfaceContainerHigh ?? cleanDefaultContainerHigh,
       surfaceContainerHighest:
           surfaceColors?.containerHighest ??
               neutralVariantScheme?.surfaceContainerHighest ??
               neutralScheme?.surfaceContainerHighest ??
-              base.surfaceContainerHighest,
+              cleanDefaultContainerHighest,
 
       // Outline
-      outline: neutralScheme?.outline ?? base.outline,
-      outlineVariant: neutralScheme?.outlineVariant ?? base.outlineVariant,
+      outline: neutralScheme?.outline ?? cleanDefaultOutline,
+      outlineVariant: neutralScheme?.outlineVariant ?? cleanDefaultOutlineVariant,
 
       // ❗ Errors — proper on-color pairs
       error: errorScheme?.error ?? base.error,

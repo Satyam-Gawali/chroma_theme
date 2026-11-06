@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
 
-Color _softenNeutralSeed(Color color, Brightness brightness) {
-  final hsl = HSLColor.fromColor(color);
-  final toned = hsl.withSaturation((hsl.saturation * 0.35).clamp(0.0, 1.0));
-
-  if (brightness == Brightness.light) {
-    return Color.alphaBlend(
-      Colors.white.withValues(alpha: 0.72),
-      toned.toColor(),
-    );
-  }
-
-  return Color.alphaBlend(
-    Colors.black.withValues(alpha: 0.50),
-    toned.toColor(),
-  );
-}
-
 ColorScheme buildPaletteScheme({
   required Brightness brightness,
   required Color primarySeed,
@@ -43,14 +26,62 @@ ColorScheme buildPaletteScheme({
     seedColor: tertiarySeed,
     brightness: brightness,
   );
-  final neutral = ColorScheme.fromSeed(
-    seedColor: _softenNeutralSeed(neutralSeed, brightness),
-    brightness: brightness,
-  );
   final error = ColorScheme.fromSeed(
     seedColor: const Color(0xFFB3261E),
     brightness: brightness,
   );
+
+  final bool isLight = brightness == Brightness.light;
+
+  // 🌟 Ultra-Clean, Modern, Eye-Pleasing Surfaces (Zero Muddy Color Mixing)
+  // Keeps backgrounds restful and crisp, letting the vibrant primary/secondary pop!
+  final Color cleanSurface = isLight
+      ? const Color(0xFFFFFFFF)
+      : const Color(0xFF121316);
+
+  final Color cleanSurfaceDim = isLight
+      ? const Color(0xFFEDEDF0)
+      : const Color(0xFF0E0F12);
+
+  final Color cleanSurfaceBright = isLight
+      ? const Color(0xFFFFFFFF)
+      : const Color(0xFF282A32);
+
+  final Color cleanContainerLowest = isLight
+      ? const Color(0xFFFFFFFF)
+      : const Color(0xFF0B0C0E);
+
+  final Color cleanContainerLow = isLight
+      ? const Color(0xFFF8F9FA)
+      : const Color(0xFF18191E);
+
+  final Color cleanContainer = isLight
+      ? const Color(0xFFF1F3F5)
+      : const Color(0xFF1F2026);
+
+  final Color cleanContainerHigh = isLight
+      ? const Color(0xFFE9ECEF)
+      : const Color(0xFF262830);
+
+  final Color cleanContainerHighest = isLight
+      ? const Color(0xFFE2E4E8)
+      : const Color(0xFF2F313B);
+
+  final Color cleanOnSurface = isLight
+      ? const Color(0xFF111827)
+      : const Color(0xFFF3F4F6);
+
+  final Color cleanOnSurfaceVariant = isLight
+      ? const Color(0xFF4B5563)
+      : const Color(0xFF9CA3AF);
+
+  final Color cleanOutline = isLight
+      ? const Color(0xFFD1D5DB)
+      : const Color(0xFF4B5563);
+
+  final Color cleanOutlineVariant = isLight
+      ? const Color(0xFFE5E7EB)
+      : const Color(0xFF2D3038);
 
   return primary.copyWith(
     primary: primary.primary,
@@ -81,24 +112,24 @@ ColorScheme buildPaletteScheme({
     onError: error.onError,
     errorContainer: error.errorContainer,
     onErrorContainer: error.onErrorContainer,
-    surface: surfaceOverride ?? neutral.surface,
-    onSurface: onSurfaceOverride ?? neutral.onSurface,
-    onSurfaceVariant: neutral.onSurfaceVariant,
-    surfaceDim: neutral.surfaceDim,
-    surfaceBright: neutral.surfaceBright,
-    surfaceContainerLowest: neutral.surfaceContainerLowest,
-    surfaceContainerLow: neutral.surfaceContainerLow,
-    surfaceContainer: neutral.surfaceContainer,
-    surfaceContainerHigh: neutral.surfaceContainerHigh,
-    surfaceContainerHighest: neutral.surfaceContainerHighest,
+    surface: cleanSurface,
+    onSurface: cleanOnSurface,
+    onSurfaceVariant: cleanOnSurfaceVariant,
+    surfaceDim: cleanSurfaceDim,
+    surfaceBright: cleanSurfaceBright,
+    surfaceContainerLowest: cleanContainerLowest,
+    surfaceContainerLow: cleanContainerLow,
+    surfaceContainer: cleanContainer,
+    surfaceContainerHigh: cleanContainerHigh,
+    surfaceContainerHighest: cleanContainerHighest,
     surfaceTint: primary.surfaceTint,
-    inverseSurface: inverseSurfaceOverride ?? neutral.inverseSurface,
-    onInverseSurface: onInverseSurfaceOverride ?? neutral.onInverseSurface,
+    inverseSurface: isLight ? const Color(0xFF1F2937) : const Color(0xFFF3F4F6),
+    onInverseSurface: isLight ? const Color(0xFFF9FAFB) : const Color(0xFF111827),
     inversePrimary: primary.inversePrimary,
-    outline: outlineOverride ?? neutral.outline,
-    outlineVariant: outlineVariantOverride ?? neutral.outlineVariant,
-    shadow: neutral.shadow,
-    scrim: neutral.scrim,
+    outline: outlineOverride ?? cleanOutline,
+    outlineVariant: outlineVariantOverride ?? cleanOutlineVariant,
+    shadow: Colors.black,
+    scrim: Colors.black,
   );
 }
 

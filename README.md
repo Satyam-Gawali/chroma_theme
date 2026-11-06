@@ -9,7 +9,7 @@ Ship adaptive color systems with 22 handcrafted palettes, pure AMOLED preservati
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Flutter Support](https://img.shields.io/badge/Flutter-v3.27+-blue?logo=flutter)](https://flutter.dev)
 [![Dart Support](https://img.shields.io/badge/Dart-v3.3+-0175C2?logo=dart)](https://dart.dev)
-<a href="https://buymeacoffee.com/satyam.sg" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="28" style="vertical-align: middle;" /></a>
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-yellow.svg?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/satyam.sg)
 
 <br><br>
 
@@ -390,11 +390,17 @@ ChromaTheme.builder(
 
 ## ☕ Support & Sponsorship
 
-If you find Chroma Theme helpful and want to support its ongoing development, feel free to buy me a coffee:
+If you find **Chroma Theme** helpful, saved hours of development time, or use it in your production apps, please consider buying me a coffee to support its ongoing development:
+
+<br>
 
 <a href="https://buymeacoffee.com/satyam.sg" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="42" />
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="46" />
 </a>
+
+<br><br>
+
+Your support helps maintain the library, add new palettes, and build powerful developer tools! ☕✨
 
 ---
 
