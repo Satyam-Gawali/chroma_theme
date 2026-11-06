@@ -11,13 +11,17 @@ class ChromaThemeBuilder {
     String? fontFamily,
   }) {
     final isAmoled = scheme.surface == Colors.black && scheme.brightness == Brightness.dark;
+    final baseTextTheme = overrides?.textTheme ?? textTheme;
+    final effectiveTextTheme = fontFamily != null
+        ? baseTextTheme.apply(fontFamily: fontFamily)
+        : baseTextTheme;
 
     return ThemeData(
       useMaterial3: true,
       fontFamily: fontFamily,
       brightness: scheme.brightness,
       colorScheme: scheme,
-      textTheme: overrides?.textTheme ?? textTheme,
+      textTheme: effectiveTextTheme,
 
       // Scaffold background
       scaffoldBackgroundColor: scheme.surface,

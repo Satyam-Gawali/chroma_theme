@@ -16,8 +16,12 @@ class ChromaSchedule {
   const ChromaSchedule({
     this.lightTime = const TimeOfDay(hour: 6, minute: 0),
     this.darkTime = const TimeOfDay(hour: 19, minute: 0),
-    this.darkEffectiveMode = ChromaThemeMode.dark,
-  });
+    ChromaThemeMode? darkEffectiveMode,
+    ChromaThemeMode? darkTargetMode,
+  }) : darkEffectiveMode = darkTargetMode ?? darkEffectiveMode ?? ChromaThemeMode.dark;
+
+  /// Alias for [darkEffectiveMode].
+  ChromaThemeMode get darkTargetMode => darkEffectiveMode;
 
   /// Evaluates whether the given [dateTime] (defaults to [DateTime.now()]) falls
   /// in the daytime (light) or nighttime (dark) schedule.

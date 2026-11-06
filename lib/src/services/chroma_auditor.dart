@@ -20,10 +20,18 @@ class ChromaContrastResult {
     required this.passesAAA,
   });
 
+  Color get foregroundColor => foreground;
+  Color get backgroundColor => background;
+  String get foregroundRole => pairName.split('/').first.trim();
+  String get backgroundRole => pairName.contains('/') ? pairName.split('/').last.trim() : pairName;
+
   @override
   String toString() =>
       '$pairName: ${ratio.toStringAsFixed(2)}:1 (AA: ${passesAANormal ? "PASS" : "FAIL"}, AAA: ${passesAAA ? "PASS" : "FAIL"})';
 }
+
+/// Backward compatibility alias.
+typedef ChromaContrastPair = ChromaContrastResult;
 
 /// Comprehensive audit report for a [ColorScheme].
 class ChromaAuditReport {
@@ -34,9 +42,22 @@ class ChromaAuditReport {
   /// True if all evaluated pairs meet minimum WCAG AA normal text contrast (>= 4.5:1).
   bool get passesAA => results.every((r) => r.passesAANormal);
 
+  /// True if all evaluated pairs meet minimum WCAG AA normal text contrast.
+  bool get isAccessible => passesAA;
+
   /// List of pairs that failed WCAG AA normal text contrast.
   List<ChromaContrastResult> get failures =>
       results.where((r) => !r.passesAANormal).toList();
+
+  /// List of pairs that failed WCAG AA normal text contrast (alias).
+  List<ChromaContrastResult> get failingAAPairs => failures;
+
+  /// All evaluated pairs.
+  List<ChromaContrastResult> get pairs => results;
+
+  /// Ratio of pairs that pass AA normal contrast (0.0 to 1.0).
+  double get aaNormalPassRate =>
+      results.isEmpty ? 1.0 : (results.length - failures.length) / results.length;
 
   @override
   String toString() {
@@ -47,6 +68,9 @@ class ChromaAuditReport {
     return buffer.toString();
   }
 }
+
+/// Backward compatibility alias.
+typedef ChromaAuditResult = ChromaAuditReport;
 
 /// Audits [ColorScheme] pairs against W3C WCAG 2.1 accessibility guidelines.
 class ChromaAuditor {
@@ -99,16 +123,6 @@ class ChromaAuditor {
         background: scheme.tertiary,
       ),
       evaluatePair(
-        name: 'onSurface / surface',
-        foreground: scheme.onSurface,
-        background: scheme.surface,
-      ),
-      evaluatePair(
-        name: 'onError / error',
-        foreground: scheme.onError,
-        background: scheme.error,
-      ),
-      evaluatePair(
         name: 'onPrimaryContainer / primaryContainer',
         foreground: scheme.onPrimaryContainer,
         background: scheme.primaryContainer,
@@ -119,9 +133,34 @@ class ChromaAuditor {
         background: scheme.secondaryContainer,
       ),
       evaluatePair(
+        name: 'onTertiaryContainer / tertiaryContainer',
+        foreground: scheme.onTertiaryContainer,
+        background: scheme.tertiaryContainer,
+      ),
+      evaluatePair(
+        name: 'onSurface / surface',
+        foreground: scheme.onSurface,
+        background: scheme.surface,
+      ),
+      evaluatePair(
         name: 'onSurfaceVariant / surface',
         foreground: scheme.onSurfaceVariant,
         background: scheme.surface,
+      ),
+      evaluatePair(
+        name: 'onError / error',
+        foreground: scheme.onError,
+        background: scheme.error,
+      ),
+      evaluatePair(
+        name: 'onErrorContainer / errorContainer',
+        foreground: scheme.onErrorContainer,
+        background: scheme.errorContainer,
+      ),
+      evaluatePair(
+        name: 'onInverseSurface / inverseSurface',
+        foreground: scheme.onInverseSurface,
+        background: scheme.inverseSurface,
       ),
     ];
 

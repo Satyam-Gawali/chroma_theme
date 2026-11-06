@@ -57,7 +57,7 @@ void main() {
       );
 
       expect(theme.useMaterial3, isTrue);
-      expect(theme.fontFamily, 'Montserrat');
+      expect(theme.textTheme.bodyMedium?.fontFamily, 'Montserrat');
       expect(theme.appBarTheme.centerTitle, isTrue);
       expect(theme.appBarTheme.elevation, 5);
       expect(theme.appBarTheme.backgroundColor, Colors.purple);

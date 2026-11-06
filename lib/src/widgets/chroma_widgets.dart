@@ -76,8 +76,9 @@ class ChromaPaletteSelector extends StatelessWidget {
   const ChromaPaletteSelector({
     super.key,
     this.horizontal = true,
-    this.swatchSize = 44.0,
-  });
+    double? size,
+    double? swatchSize,
+  }) : swatchSize = size ?? swatchSize ?? 44.0;
 
   @override
   Widget build(BuildContext context) {

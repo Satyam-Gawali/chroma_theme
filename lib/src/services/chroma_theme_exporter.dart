@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../utils/chroma_theme_utils.dart';
 
 /// Exports runtime [ColorScheme] and [ThemeData] configurations into clean,
 /// dependency-free standalone Dart source code.
@@ -45,6 +44,15 @@ final $variableName = ColorScheme(
   outlineVariant: ${c(scheme.outlineVariant)},
 );
 ''';
+  }
+
+  /// Exports a color scheme to a complete standalone Dart snippet.
+  static String exportToDart({
+    required ColorScheme scheme,
+    String themeName = 'AppTheme',
+    bool isDark = false,
+  }) {
+    return exportColorScheme(scheme, variableName: '${themeName}Scheme');
   }
 
   /// Generates a complete standalone `ThemeData` factory function.

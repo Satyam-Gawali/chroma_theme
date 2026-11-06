@@ -6,9 +6,9 @@ This master checklist tracks every concrete task, file affected, status, and ver
 
 ## 📊 Overall Progress Summary
 - **Total Tasks:** 32
-- **Completed:** 24
+- **Completed:** 32 (100%)
 - **In Progress:** 0
-- **Pending:** 8
+- **Pending:** 0
 
 ---
 
@@ -149,7 +149,7 @@ This master checklist tracks every concrete task, file affected, status, and ver
 ## 📖 Phase 7: Documentation & Release Polish
 *Target: Perfect documentation for pub.dev score.*
 
-- [ ] **Task 7.1:** Update `README.md` with Chroma Theme 2.0 Builder API  
-- [ ] **Task 7.2:** Update `CHANGELOG.md` for v2.0.0 breaking change notes  
-- [ ] **Task 7.3:** Update `API.md` and `USAGE_GUIDE.md`  
-- [ ] **Task 7.4:** Run `dart pub publish --dry-run` and verify 140/140 pub points readiness  
+- [x] **Task 7.1:** Update `README.md` with Chroma Theme 2.0 Builder API  
+- [x] **Task 7.2:** Update `CHANGELOG.md` for v2.0.0 breaking change notes  
+- [x] **Task 7.3:** Update `API.md` and `USAGE_GUIDE.md`  
+- [x] **Task 7.4:** Run `dart pub publish --dry-run` and verify 140/140 pub points readiness  

@@ -1,17 +1,19 @@
-# chroma_theme_example
+# Chroma Theme Example App 🎨
 
-A new Flutter project.
+A comprehensive playground demonstrating the power of **Chroma Theme 2.0**.
 
-## Getting Started
+## ✨ Features Demonstrated
 
-This project is a starting point for a Flutter application.
+- **`ChromaTheme.builder`**: Native Material 3 app setup.
+- **5 Theme Modes**: Interactive switching between `Light`, `Dark`, `System`, `High Contrast`, and `AMOLED`.
+- **22 Curated Palettes**: Instant switching with live color updates.
+- **Drop-in Widgets**: `ChromaThemeToggle`, `ChromaPaletteSelector`, and `showChromaThemeSheet`.
+- **Full ColorScheme Previews**: Primary, secondary, tertiary, surfaces, containers, outlines, and fixed role tokens.
+- **Tonal Palette Inspector**: Real-time visualization of Material 3 tones (0 to 100).
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Running the Example
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+cd example
+flutter run
+```
