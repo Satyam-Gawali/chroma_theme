@@ -6,9 +6,9 @@ This master checklist tracks every concrete task, file affected, status, and ver
 
 ## 📊 Overall Progress Summary
 - **Total Tasks:** 32
-- **Completed:** 9
+- **Completed:** 13
 - **In Progress:** 0
-- **Pending:** 23
+- **Pending:** 19
 
 ---
 
@@ -67,21 +67,21 @@ This master checklist tracks every concrete task, file affected, status, and ver
 ## 🏗️ Phase 3: Core Architecture Redesign (Builder Pattern)
 *Target: Eliminate nested MaterialApp bug, build solid state management.*
 
-- [ ] **Task 3.1:** Redesign `ChromaTheme.builder` primary constructor  
+- [x] **Task 3.1:** Redesign `ChromaTheme.builder` primary constructor  
   - **File:** `lib/src/core/chroma_theme_widget.dart`  
   - **Change:** Provide `ChromaTheme.builder(builder: (context, theme, darkTheme, themeMode) => ...)` and clean `child:` alternative.  
   - **Verification:** Remove all `widget.child is MaterialApp` conditionals.
 
-- [ ] **Task 3.2:** Upgrade `ChromaThemeController`  
+- [x] **Task 3.2:** Upgrade `ChromaThemeController`  
   - **File:** `lib/src/core/chroma_theme_controller.dart`  
   - **Change:** Add persistence hook, cached `ThemeData` generation, and safe stream lifecycle handling.
 
-- [ ] **Task 3.3:** Upgrade `ChromaOverrides` for Modern Material 3  
+- [x] **Task 3.3:** Upgrade `ChromaOverrides` for Modern Material 3  
   - **File:** `lib/src/models/chroma_overrides.dart` & `lib/src/builder/chroma_theme_builder.dart`  
   - **Change:** Add `navigationBarTheme`, `outlinedButtonTheme`, `filledButtonTheme`, `searchBarTheme`.  
   - **Verification:** Pass overrides to `ThemeData` in `ChromaThemeBuilder`.
 
-- [ ] **Task 3.4:** Implement `ThemePersistence` integration  
+- [x] **Task 3.4:** Implement `ThemePersistence` integration  
   - **File:** `lib/src/core/chroma_theme_controller.dart` & `lib/src/services/theme_persistence.dart`  
   - **Change:** Accept optional `persistence` parameter in controller and widget, auto-loading saved settings on initialization and auto-saving on state change.
 

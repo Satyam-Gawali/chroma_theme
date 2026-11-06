@@ -15,10 +15,10 @@ class ChromaThemeBuilder {
       colorScheme: scheme,
       textTheme: overrides?.textTheme ?? textTheme,
 
-      // 🔥 Background
+      // Scaffold background
       scaffoldBackgroundColor: scheme.surface,
 
-      // 🔥 AppBar — user can override
+      // AppBar
       appBarTheme: overrides?.appBarTheme ??
           AppBarTheme(
             backgroundColor: scheme.surface,
@@ -26,7 +26,7 @@ class ChromaThemeBuilder {
             elevation: 0,
           ),
 
-      // 🔥 Buttons — user can override
+      // Buttons
       elevatedButtonTheme: overrides?.elevatedButtonTheme ??
           ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
@@ -34,30 +34,37 @@ class ChromaThemeBuilder {
               foregroundColor: scheme.onPrimary,
             ),
           ),
+      filledButtonTheme: overrides?.filledButtonTheme,
+      outlinedButtonTheme: overrides?.outlinedButtonTheme,
 
-      // 🔥 Card — user can override
+      // Card
       cardTheme: overrides?.cardTheme,
 
-      // 🔥 InputDecoration — user can override
+      // Inputs
       inputDecorationTheme: overrides?.inputDecorationTheme,
 
-      // 🔥 Divider
+      // Divider
       dividerTheme: DividerThemeData(
         color: scheme.outlineVariant,
       ),
 
-      // 🔥 Floating Action Button — user can override
+      // Floating Action Button
       floatingActionButtonTheme: overrides?.floatingActionButtonTheme ??
           FloatingActionButtonThemeData(
             backgroundColor: scheme.primaryContainer,
             foregroundColor: scheme.onPrimaryContainer,
           ),
 
-      // 🔥 BottomNavigationBar — user can override
+      // Navigation
+      navigationBarTheme: overrides?.navigationBarTheme,
+      navigationRailTheme: overrides?.navigationRailTheme,
       bottomNavigationBarTheme: overrides?.bottomNavigationBarTheme,
 
-      // 🔥 SnackBar — user can override
+      // SnackBar & Dialogs
       snackBarTheme: overrides?.snackBarTheme,
+      searchBarTheme: overrides?.searchBarTheme,
+      segmentedButtonTheme: overrides?.segmentedButtonTheme,
+      dialogTheme: overrides?.dialogTheme,
     );
   }
 }
