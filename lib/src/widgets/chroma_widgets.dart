@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../core/chroma_theme_controller.dart';
-import '../core/chroma_theme_widget.dart';
 import '../extensions/chroma_theme_extension.dart';
 import '../models/chroma_palette.dart';
 import '../models/chroma_theme_mode.dart';
