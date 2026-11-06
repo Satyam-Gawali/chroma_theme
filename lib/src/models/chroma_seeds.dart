@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// ChromaSeeds defines optional seed colors for generating a ColorScheme.
 ///
 /// Adaptive system:
-/// - 1 color → full theme auto generated
+/// - 1 color → full theme auto generated via [ChromaSeeds.fromPrimary]
 /// - multiple colors → selective overrides
 ///
 /// Surface Strategy:
@@ -53,6 +53,12 @@ class ChromaSeeds {
     this.inverse,
   });
 
+  /// Convenience constructor to generate a full theme from a single primary brand color.
+  /// Ideal for Material You dynamic colors.
+  factory ChromaSeeds.fromPrimary(Color primary) {
+    return ChromaSeeds(primary: primary);
+  }
+
   /// Helper: check if empty
   bool get isEmpty =>
       primary == null &&
@@ -101,4 +107,36 @@ class ChromaSeeds {
       inverse: inverse ?? this.inverse,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is ChromaSeeds &&
+        other.primary == primary &&
+        other.secondary == secondary &&
+        other.tertiary == tertiary &&
+        other.neutral == neutral &&
+        other.neutralLight == neutralLight &&
+        other.neutralDark == neutralDark &&
+        other.neutralVariant == neutralVariant &&
+        other.error == error &&
+        other.inverse == inverse;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        primary,
+        secondary,
+        tertiary,
+        neutral,
+        neutralLight,
+        neutralDark,
+        neutralVariant,
+        error,
+        inverse,
+      );
+
+  @override
+  String toString() =>
+      'ChromaSeeds(primary: $primary, secondary: $secondary, neutral: $neutral)';
 }

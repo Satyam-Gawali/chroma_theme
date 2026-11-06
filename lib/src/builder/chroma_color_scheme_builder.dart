@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../chroma_theme.dart';
+import '../models/chroma_palette.dart';
+import '../models/chroma_seeds.dart';
+import '../models/chroma_theme_mode.dart';
+import '../palettes/palette_registry.dart';
 
 class ChromaColorSchemeBuilder {
   ChromaColorSchemeBuilder._();
@@ -77,12 +80,32 @@ class ChromaColorSchemeBuilder {
     return const ColorScheme.dark(
       primary: Colors.white,
       onPrimary: Colors.black,
+      primaryContainer: Color(0xFF1F1F1F),
+      onPrimaryContainer: Colors.white,
+      primaryFixed: Colors.white,
+      primaryFixedDim: Color(0xFFDCDCDC),
+      onPrimaryFixed: Colors.black,
+      onPrimaryFixedVariant: Color(0xFF222222),
       secondary: Colors.white70,
       onSecondary: Colors.black,
+      secondaryContainer: Color(0xFF2B2B2B),
+      onSecondaryContainer: Colors.white,
+      secondaryFixed: Colors.white70,
+      secondaryFixedDim: Color(0xFFB0B0B0),
+      onSecondaryFixed: Colors.black,
+      onSecondaryFixedVariant: Color(0xFF222222),
       tertiary: Colors.white60,
       onTertiary: Colors.black,
+      tertiaryContainer: Color(0xFF353535),
+      onTertiaryContainer: Colors.white,
+      tertiaryFixed: Colors.white60,
+      tertiaryFixedDim: Color(0xFFA0A0A0),
+      onTertiaryFixed: Colors.black,
+      onTertiaryFixedVariant: Color(0xFF222222),
       surface: Colors.black,
       onSurface: Colors.white,
+      surfaceDim: Colors.black,
+      surfaceBright: Color(0xFF1C1C1C),
       error: Color(0xFFFF6B6B),
       onError: Colors.black,
       outline: Colors.white,
@@ -94,6 +117,8 @@ class ChromaColorSchemeBuilder {
   static ColorScheme _amoledScheme() {
     return const ColorScheme.dark(
       surface: Colors.black,
+      surfaceDim: Colors.black,
+      surfaceBright: Color(0xFF181818),
       onSurface: Colors.white,
       surfaceContainerLowest: Colors.black,
       surfaceContainerLow: Color(0xFF050505),
@@ -110,6 +135,8 @@ class ChromaColorSchemeBuilder {
       onSecondary: Colors.black,
       onTertiary: Colors.black,
       surface: Colors.black,
+      surfaceDim: Colors.black,
+      surfaceBright: const Color(0xFF1C1C1C),
       onSurface: Colors.white,
       surfaceContainerLowest: Colors.black,
       surfaceContainerLow: const Color(0xFF0A0A0A),
@@ -214,22 +241,32 @@ class ChromaColorSchemeBuilder {
         : null;
 
     return base.copyWith(
-      // 🎨 Secondary — proper on-color pairs
+      // 🎨 Secondary — proper on-color pairs + fixed roles
       secondary: secondaryScheme?.primary ?? base.secondary,
       onSecondary: secondaryScheme?.onPrimary ?? base.onSecondary,
       secondaryContainer: secondaryScheme?.primaryContainer ?? base.secondaryContainer,
       onSecondaryContainer: secondaryScheme?.onPrimaryContainer ?? base.onSecondaryContainer,
+      secondaryFixed: secondaryScheme?.primaryFixed ?? base.secondaryFixed,
+      secondaryFixedDim: secondaryScheme?.primaryFixedDim ?? base.secondaryFixedDim,
+      onSecondaryFixed: secondaryScheme?.onPrimaryFixed ?? base.onSecondaryFixed,
+      onSecondaryFixedVariant: secondaryScheme?.onPrimaryFixedVariant ?? base.onSecondaryFixedVariant,
 
-      // 🎨 Tertiary — proper on-color pairs
+      // 🎨 Tertiary — proper on-color pairs + fixed roles
       tertiary: tertiaryScheme?.primary ?? base.tertiary,
       onTertiary: tertiaryScheme?.onPrimary ?? base.onTertiary,
       tertiaryContainer: tertiaryScheme?.primaryContainer ?? base.tertiaryContainer,
       onTertiaryContainer: tertiaryScheme?.onPrimaryContainer ?? base.onTertiaryContainer,
+      tertiaryFixed: tertiaryScheme?.primaryFixed ?? base.tertiaryFixed,
+      tertiaryFixedDim: tertiaryScheme?.primaryFixedDim ?? base.tertiaryFixedDim,
+      onTertiaryFixed: tertiaryScheme?.onPrimaryFixed ?? base.onTertiaryFixed,
+      onTertiaryFixedVariant: tertiaryScheme?.onPrimaryFixedVariant ?? base.onTertiaryFixedVariant,
 
       // 🧱 Surfaces
       surface: surfaceColors?.surface ?? neutralScheme?.surface ?? base.surface,
       onSurface: surfaceColors?.onSurface ?? neutralScheme?.onSurface ?? base.onSurface,
       onSurfaceVariant: surfaceColors?.onSurfaceVariant ?? neutralScheme?.onSurfaceVariant ?? base.onSurfaceVariant,
+      surfaceDim: surfaceColors?.surfaceDim ?? neutralScheme?.surfaceDim ?? base.surfaceDim,
+      surfaceBright: surfaceColors?.surfaceBright ?? neutralScheme?.surfaceBright ?? base.surfaceBright,
 
       surfaceContainerLowest:
           surfaceColors?.containerLowest ?? neutralScheme?.surfaceContainerLowest ?? base.surfaceContainerLowest,
@@ -272,6 +309,8 @@ class ChromaColorSchemeBuilder {
         surface: color,
         onSurface: _contrastFor(color),
         onSurfaceVariant: _contrastFor(color).withValues(alpha: 0.7),
+        surfaceDim: _adjustLightness(hsl, -0.04),
+        surfaceBright: _adjustLightness(hsl, 0.08),
         containerLowest: _adjustLightness(hsl, -0.03),
         containerLow: _adjustLightness(hsl, 0.02),
         container: _adjustLightness(hsl, 0.05),
@@ -283,6 +322,8 @@ class ChromaColorSchemeBuilder {
         surface: color,
         onSurface: _contrastFor(color),
         onSurfaceVariant: _contrastFor(color).withValues(alpha: 0.7),
+        surfaceDim: _adjustLightness(hsl, -0.06),
+        surfaceBright: _adjustLightness(hsl, 0.02),
         containerLowest: _adjustLightness(hsl, 0.03),
         containerLow: _adjustLightness(hsl, -0.02),
         container: _adjustLightness(hsl, -0.05),
@@ -305,6 +346,8 @@ class _SurfaceTones {
   final Color surface;
   final Color onSurface;
   final Color onSurfaceVariant;
+  final Color surfaceDim;
+  final Color surfaceBright;
   final Color containerLowest;
   final Color containerLow;
   final Color container;
@@ -315,6 +358,8 @@ class _SurfaceTones {
     required this.surface,
     required this.onSurface,
     required this.onSurfaceVariant,
+    required this.surfaceDim,
+    required this.surfaceBright,
     required this.containerLowest,
     required this.containerLow,
     required this.container,

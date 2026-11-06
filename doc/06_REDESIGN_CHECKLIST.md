@@ -6,9 +6,9 @@ This master checklist tracks every concrete task, file affected, status, and ver
 
 ## 📊 Overall Progress Summary
 - **Total Tasks:** 32
-- **Completed:** 19
+- **Completed:** 24
 - **In Progress:** 0
-- **Pending:** 13
+- **Pending:** 8
 
 ---
 
@@ -124,23 +124,23 @@ This master checklist tracks every concrete task, file affected, status, and ver
 ## 🧪 Phase 6: Unit & Widget Testing
 *Target: Achieve robust test coverage (>85%).*
 
-- [ ] **Task 6.1:** Unit tests for `ChromaThemeController`  
+- [x] **Task 6.1:** Unit tests for `ChromaThemeController`  
   - **File:** `test/chroma_theme_controller_test.dart`  
   - Mode switching, palette switching, seed clear/set, streams.
 
-- [ ] **Task 6.2:** Unit tests for `ChromaColorSchemeBuilder`  
+- [x] **Task 6.2:** Unit tests for `ChromaColorSchemeBuilder`  
   - **File:** `test/chroma_color_scheme_builder_test.dart`  
   - Test all 5 modes, AMOLED pure black check, High-Contrast token check.
 
-- [ ] **Task 6.3:** Unit tests for `PaletteRegistry`  
+- [x] **Task 6.3:** Unit tests for `PaletteRegistry`  
   - **File:** `test/palette_registry_test.dart`  
   - Verify all 22 palettes exist with non-null light, dark, and high-contrast schemes.
 
-- [ ] **Task 6.4:** Unit tests for `ChromaSeeds` priority  
+- [x] **Task 6.4:** Unit tests for `ChromaSeeds` priority  
   - **File:** `test/chroma_seeds_test.dart`  
   - Verify custom seeds override palettes correctly.
 
-- [ ] **Task 6.5:** Widget tests for `ChromaTheme.builder`  
+- [x] **Task 6.5:** Widget tests for `ChromaTheme.builder`  
   - **File:** `test/chroma_theme_widget_test.dart`  
   - Verify widget tree building, theme application, and rebuilds on controller change.
 

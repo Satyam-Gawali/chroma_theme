@@ -14,6 +14,7 @@ class ChromaOverrides {
   final NavigationBarThemeData? navigationBarTheme;
   final NavigationRailThemeData? navigationRailTheme;
   final BottomNavigationBarThemeData? bottomNavigationBarTheme;
+  final BottomSheetThemeData? bottomSheetTheme;
   final SnackBarThemeData? snackBarTheme;
   final SearchBarThemeData? searchBarTheme;
   final SegmentedButtonThemeData? segmentedButtonTheme;
@@ -31,6 +32,7 @@ class ChromaOverrides {
     this.navigationBarTheme,
     this.navigationRailTheme,
     this.bottomNavigationBarTheme,
+    this.bottomSheetTheme,
     this.snackBarTheme,
     this.searchBarTheme,
     this.segmentedButtonTheme,
@@ -50,6 +52,7 @@ class ChromaOverrides {
     NavigationBarThemeData? navigationBarTheme,
     NavigationRailThemeData? navigationRailTheme,
     BottomNavigationBarThemeData? bottomNavigationBarTheme,
+    BottomSheetThemeData? bottomSheetTheme,
     SnackBarThemeData? snackBarTheme,
     SearchBarThemeData? searchBarTheme,
     SegmentedButtonThemeData? segmentedButtonTheme,
@@ -67,10 +70,53 @@ class ChromaOverrides {
       navigationBarTheme: navigationBarTheme ?? this.navigationBarTheme,
       navigationRailTheme: navigationRailTheme ?? this.navigationRailTheme,
       bottomNavigationBarTheme: bottomNavigationBarTheme ?? this.bottomNavigationBarTheme,
+      bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
       snackBarTheme: snackBarTheme ?? this.snackBarTheme,
       searchBarTheme: searchBarTheme ?? this.searchBarTheme,
       segmentedButtonTheme: segmentedButtonTheme ?? this.segmentedButtonTheme,
       dialogTheme: dialogTheme ?? this.dialogTheme,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is ChromaOverrides &&
+        other.appBarTheme == appBarTheme &&
+        other.cardTheme == cardTheme &&
+        other.textTheme == textTheme &&
+        other.elevatedButtonTheme == elevatedButtonTheme &&
+        other.filledButtonTheme == filledButtonTheme &&
+        other.outlinedButtonTheme == outlinedButtonTheme &&
+        other.inputDecorationTheme == inputDecorationTheme &&
+        other.floatingActionButtonTheme == floatingActionButtonTheme &&
+        other.navigationBarTheme == navigationBarTheme &&
+        other.navigationRailTheme == navigationRailTheme &&
+        other.bottomNavigationBarTheme == bottomNavigationBarTheme &&
+        other.bottomSheetTheme == bottomSheetTheme &&
+        other.snackBarTheme == snackBarTheme &&
+        other.searchBarTheme == searchBarTheme &&
+        other.segmentedButtonTheme == segmentedButtonTheme &&
+        other.dialogTheme == dialogTheme;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        appBarTheme,
+        cardTheme,
+        textTheme,
+        elevatedButtonTheme,
+        filledButtonTheme,
+        outlinedButtonTheme,
+        inputDecorationTheme,
+        floatingActionButtonTheme,
+        navigationBarTheme,
+        navigationRailTheme,
+        bottomNavigationBarTheme,
+        bottomSheetTheme,
+        snackBarTheme,
+        searchBarTheme,
+        segmentedButtonTheme,
+        dialogTheme,
+      );
 }

@@ -63,6 +63,21 @@ class _ChromaExampleAppState extends State<ChromaExampleApp> {
         ),
         actions: [
           IconButton(
+            icon: const Icon(Icons.style_rounded),
+            tooltip: 'Theme BottomSheet',
+            onPressed: () => showChromaThemeSheet(context),
+          ),
+          IconButton(
+            icon: Icon(context.isDarkMode ? Icons.light_mode_rounded : Icons.dark_mode_rounded),
+            tooltip: 'Quick Toggle',
+            onPressed: () => context.toggleTheme(supportAmoled: true),
+          ),
+          IconButton(
+            icon: const Icon(Icons.shuffle_rounded),
+            tooltip: 'Random Palette',
+            onPressed: () => context.chroma.randomPalette(),
+          ),
+          IconButton(
             icon: const Icon(Icons.auto_awesome_motion_rounded),
             tooltip: 'Visualizer',
             onPressed: () => Navigator.push(
@@ -240,7 +255,7 @@ class _PaletteTab extends StatelessWidget {
 
   Widget _colorBox(String name, Color color, Color onColor) {
     return Container(
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(12), border: Border.all(color: Colors.black.withOpacity(0.05))),
+      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(12), border: Border.all(color: Colors.black.withValues(alpha: 0.05))),
       padding: const EdgeInsets.all(12),
       alignment: Alignment.centerLeft,
       child: Text(name, style: TextStyle(color: onColor, fontWeight: FontWeight.bold, fontSize: 11)),

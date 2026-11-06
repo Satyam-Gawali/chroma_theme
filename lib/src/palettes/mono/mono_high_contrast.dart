@@ -1,27 +1,41 @@
 import 'package:flutter/material.dart';
 
 /// Mono high contrast palette.
-/// Accessibility-first, max contrast surfaces and outlines.
+/// Accessibility-first, max contrast surfaces, tokens and outlines.
 ColorScheme monoHighContrastScheme() {
   return const ColorScheme.dark(
     primary: Colors.white,
     onPrimary: Colors.black,
     primaryContainer: Color(0xFF1F1F1F),
     onPrimaryContainer: Colors.white,
+    primaryFixed: Colors.white,
+    primaryFixedDim: Color(0xFFDCDCDC),
+    onPrimaryFixed: Colors.black,
+    onPrimaryFixedVariant: Color(0xFF222222),
     secondary: Color(0xFFE0E0E0),
     onSecondary: Colors.black,
     secondaryContainer: Color(0xFF2B2B2B),
     onSecondaryContainer: Colors.white,
+    secondaryFixed: Color(0xFFE0E0E0),
+    secondaryFixedDim: Color(0xFFB0B0B0),
+    onSecondaryFixed: Colors.black,
+    onSecondaryFixedVariant: Color(0xFF222222),
     tertiary: Color(0xFFCFCFCF),
     onTertiary: Colors.black,
     tertiaryContainer: Color(0xFF353535),
     onTertiaryContainer: Colors.white,
+    tertiaryFixed: Color(0xFFCFCFCF),
+    tertiaryFixedDim: Color(0xFFA0A0A0),
+    onTertiaryFixed: Colors.black,
+    onTertiaryFixedVariant: Color(0xFF222222),
     error: Color(0xFFFF6B6B),
     onError: Colors.black,
     errorContainer: Color(0xFF7A0000),
     onErrorContainer: Colors.white,
     surface: Colors.black,
     onSurface: Colors.white,
+    surfaceDim: Colors.black,
+    surfaceBright: Color(0xFF1C1C1C),
     surfaceContainerLowest: Colors.black,
     surfaceContainerLow: Color(0xFF050505),
     surfaceContainer: Color(0xFF0A0A0A),

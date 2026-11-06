@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../models/chroma_brand_profile.dart';
 import '../models/chroma_overrides.dart';
 import '../models/chroma_palette.dart';
+import '../models/chroma_schedule.dart';
 import '../models/chroma_seeds.dart';
 import '../models/chroma_theme_mode.dart';
 import '../palettes/palette_registry.dart';
@@ -58,6 +60,15 @@ class ChromaTheme extends StatefulWidget {
   /// Component-level theme overrides.
   final ChromaOverrides? overrides;
 
+  /// Global typography font family (e.g. 'Poppins', 'Inter').
+  final String? fontFamily;
+
+  /// Sunrise / sunset automated schedule.
+  final ChromaSchedule? schedule;
+
+  /// White-label / multi-brand styling profiles.
+  final List<ChromaBrandProfile>? brandProfiles;
+
   /// Optional persistence adapter for auto-saving theme choices.
   final ThemePersistence? persistence;
 
@@ -76,6 +87,9 @@ class ChromaTheme extends StatefulWidget {
     this.initialPalette = ChromaPalette.blue,
     this.seeds,
     this.overrides,
+    this.fontFamily,
+    this.schedule,
+    this.brandProfiles,
     this.persistence,
     this.animationDuration = const Duration(milliseconds: 300),
     this.animationCurve = Curves.easeInOut,
@@ -90,6 +104,9 @@ class ChromaTheme extends StatefulWidget {
     this.initialPalette = ChromaPalette.blue,
     this.seeds,
     this.overrides,
+    this.fontFamily,
+    this.schedule,
+    this.brandProfiles,
     this.persistence,
     this.animationDuration = const Duration(milliseconds: 300),
     this.animationCurve = Curves.easeInOut,
@@ -136,6 +153,9 @@ class _ChromaThemeState extends State<ChromaTheme> {
         initialPalette: widget.initialPalette,
         initialSeeds: widget.seeds,
         initialOverrides: widget.overrides,
+        fontFamily: widget.fontFamily,
+        schedule: widget.schedule,
+        brandProfiles: widget.brandProfiles,
         persistence: widget.persistence,
       );
     }
@@ -162,6 +182,12 @@ class _ChromaThemeState extends State<ChromaTheme> {
       }
       if (widget.overrides != oldWidget.overrides) {
         _controller.setOverrides(widget.overrides);
+      }
+      if (widget.fontFamily != oldWidget.fontFamily) {
+        _controller.setFontFamily(widget.fontFamily);
+      }
+      if (widget.schedule != oldWidget.schedule) {
+        _controller.setSchedule(widget.schedule);
       }
     }
   }
@@ -190,9 +216,10 @@ class _ChromaThemeState extends State<ChromaTheme> {
           );
         }
 
-        // Subtree fallback using AnimatedTheme
+        // Subtree fallback using AnimatedTheme with reactive MediaQuery listening
         final platformBrightness =
-            View.of(context).platformDispatcher.platformBrightness;
+            MediaQuery.maybePlatformBrightnessOf(context) ??
+                View.of(context).platformDispatcher.platformBrightness;
         final themeData = _controller.buildThemeData(platformBrightness);
 
         return ChromaThemeInherited(

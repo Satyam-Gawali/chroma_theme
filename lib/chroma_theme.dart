@@ -1,30 +1,37 @@
 library;
 
-// core
+// Core
 export 'src/core/chroma_theme_widget.dart';
 export 'src/core/chroma_theme_controller.dart';
+export 'src/core/chroma_theme_inherited.dart';
 
-// models
+// Models
 export 'src/models/chroma_theme_mode.dart';
 export 'src/models/chroma_palette.dart';
 export 'src/models/chroma_seeds.dart';
-export 'src/models/chroma_tones.dart'; // 🔥 NEW
+export 'src/models/chroma_tones.dart';
+export 'src/models/chroma_overrides.dart';
+export 'src/models/chroma_schedule.dart';
+export 'src/models/chroma_brand_profile.dart';
 
-// builder
+// Builders
 export 'src/builder/chroma_theme_builder.dart';
 export 'src/builder/chroma_color_scheme_builder.dart';
 
-// registries
+// Registries
 export 'src/palettes/palette_registry.dart';
 
-// extensions
+// Extensions
 export 'src/extensions/chroma_theme_extension.dart';
 
-// services
+// Services
 export 'src/services/theme_persistence.dart';
+export 'src/services/chroma_auditor.dart';
+export 'src/services/chroma_theme_exporter.dart';
+export 'src/services/image_theme_extractor.dart';
 
-// overrides
-export 'src/models/chroma_overrides.dart';
+// Widgets
+export 'src/widgets/chroma_widgets.dart';
 
-// utils
+// Utils
 export 'src/utils/chroma_theme_utils.dart';

@@ -8,9 +8,13 @@ class ChromaThemeBuilder {
     required ColorScheme scheme,
     required TextTheme textTheme,
     ChromaOverrides? overrides,
+    String? fontFamily,
   }) {
+    final isAmoled = scheme.surface == Colors.black && scheme.brightness == Brightness.dark;
+
     return ThemeData(
       useMaterial3: true,
+      fontFamily: fontFamily,
       brightness: scheme.brightness,
       colorScheme: scheme,
       textTheme: overrides?.textTheme ?? textTheme,
@@ -24,6 +28,7 @@ class ChromaThemeBuilder {
             backgroundColor: scheme.surface,
             foregroundColor: scheme.onSurface,
             elevation: 0,
+            scrolledUnderElevation: isAmoled ? 0 : null,
           ),
 
       // Buttons
@@ -37,8 +42,14 @@ class ChromaThemeBuilder {
       filledButtonTheme: overrides?.filledButtonTheme,
       outlinedButtonTheme: overrides?.outlinedButtonTheme,
 
-      // Card
-      cardTheme: overrides?.cardTheme,
+      // Card - In AMOLED mode, if not overridden, use surfaceContainerLow to contrast with black
+      cardTheme: overrides?.cardTheme ??
+          (isAmoled
+              ? CardThemeData(
+                  color: scheme.surfaceContainerLow,
+                  elevation: 0,
+                )
+              : null),
 
       // Inputs
       inputDecorationTheme: overrides?.inputDecorationTheme,
@@ -60,11 +71,24 @@ class ChromaThemeBuilder {
       navigationRailTheme: overrides?.navigationRailTheme,
       bottomNavigationBarTheme: overrides?.bottomNavigationBarTheme,
 
-      // SnackBar & Dialogs
+      // Sheets & Dialogs
+      bottomSheetTheme: overrides?.bottomSheetTheme ??
+          (isAmoled
+              ? const BottomSheetThemeData(
+                  backgroundColor: Colors.black,
+                  modalBackgroundColor: Colors.black,
+                )
+              : null),
+      dialogTheme: overrides?.dialogTheme ??
+          (isAmoled
+              ? DialogThemeData(
+                  backgroundColor: scheme.surfaceContainerLow,
+                )
+              : null),
+
       snackBarTheme: overrides?.snackBarTheme,
       searchBarTheme: overrides?.searchBarTheme,
       segmentedButtonTheme: overrides?.segmentedButtonTheme,
-      dialogTheme: overrides?.dialogTheme,
     );
   }
 }
